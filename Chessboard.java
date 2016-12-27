@@ -3,7 +3,7 @@ public class Chessboard{
 	Chessboard n = new Chessboard();
 	System.out.println(n);
     }
-    private char[][]cb;
+
     //int[][]Chessboard = new int[8][8];
     public Chessboard(){
 	cb = new char[8][8];
@@ -54,6 +54,9 @@ public class Chessboard{
 	    }
 	}
 	return ans;
+    }
+    public void set(Chesspieces x, String newlocation){
+	cb
     }
     
 }

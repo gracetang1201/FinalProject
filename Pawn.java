@@ -1,4 +1,7 @@
 public class Pawn extends Chesspieces{
+    public Pawn(){
+	
+    }
     Chessboard chessb = new Chessboard();
     public void move(String newlocation){
 	currentLocation = locationtoInt(newlocation);

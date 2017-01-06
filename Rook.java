@@ -14,6 +14,14 @@ public class Rook extends Chesspieces{
 	}
     }
     public boolean isValid(String newlocation){
-	if(locationtoInt(newlocation) - 
+	int newloc = locationtoInt(newlocation);
+	String curloc = Integer.toString(currentlocation);
+        int newTenth = newloc/10;
+	int newFirst = newloc%10;
+	int curTenth = currentLocation/10;
+	int curFirst = currentLocation%10;
+	if (newTenth==curTenth ^ newFirst==curFirst){
+	    return true;
+	}
     }
 }

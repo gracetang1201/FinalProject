@@ -8,9 +8,9 @@ public class Pawn extends Chesspieces{
     public String toString(Pawn p){
 	return "P";
     }
-    
+
     public void move(String newlocation){
-	if(isValid newlocation){
+	if(isValid(newlocation)){
 	    currentLocation = locationtoInt(newlocation);
 	}
     }
@@ -28,5 +28,8 @@ public class Pawn extends Chesspieces{
 	if (currentLocation + 9 == newloc){ // not valid if nothing in new loc
 	    return true;
 	}
+  else{
+    return false;
+  }
     }
 }

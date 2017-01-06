@@ -17,7 +17,7 @@ public class Chessboard{
     String ans = "";
     for (int r = 0; r < cb.length; r++){
       for (int c = 0; c < cb[r].length; c++){
-        if (c == cb[r][c] - 1){
+        if (c == cb[r].length - 1){
           ans = ans + cb[r][c] + "\n" ;
         }else{
           ans = ans + cb[r][c] + " ";
@@ -30,7 +30,7 @@ public class Chessboard{
   public void fillInPieces(){
     //Pawns
     for (int insertPawn = 0; insertPawn < 9; insertPawn++){
-      Pawn wp1 = new Pawn(insertPawn, 1);
+      Pawn wp1 = new Pawn(insertPawn, 1, 'a');
     }
     //King
   }
@@ -90,7 +90,7 @@ cb[r][c] = '.';
 public void set(Chesspieces x, String newlocation){
   cb[locationtoInt(newlocation)/10][locationtoInt(newlocation)%10] = x;
 }
-public char get(String location){
+public Chesspieces get(String location){
   return cb[locationtoInt(location)/10][locationtoInt(location)%10];
 }
 public static int locationtoInt(String location){

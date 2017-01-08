@@ -14,10 +14,11 @@ public class Bishop extends Chesspieces{
 	}
     }
     public boolean isValid(String newlocation){
-	if ((locationtoInt(newlocation) - currentLocation)%11 == 0){
+	if (Math.abs(super.locationtoInt(newlocation) - currentLocation)%11 == 0||
+	    Math.abs(super.locationtoInt(newlocation) - currentLocation)%9 == 0){
 	    return true;
-	}
-	if ((locationtoInt(newlocation) - currentLocation)%9 == 0){
-	    return true;
+	}else{
+	    return false;
 	}
     }
+}

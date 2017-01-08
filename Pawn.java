@@ -15,7 +15,7 @@ public class Pawn extends Chesspieces{
 	}
     }
     public boolean isValid(String newlocation){
-	int newloc = locationtoInt(newlocation);
+	int newloc = super.locationtoInt(newlocation);
 	if (currentLocation + 1 == newloc){
 	    return true;
 	}

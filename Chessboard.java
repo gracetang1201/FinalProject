@@ -1,14 +1,11 @@
 public class Chessboard{
-    private data[][];
-
+    private static Chesspieces[][]cb = new Chesspieces[8][8];
   public static void main (String[]args){
     Chessboard n = new Chessboard();
-    fillInPiecesStart(n);
+    fillInPiecesStart(cb);
     System.out.println(n);
   }
-  private Chesspieces[][]cb;
   public Chessboard(){
-    cb = new Chesspieces[8][8];
     for (int c = 0; c < 8; c++){
       for (int r = 0; r < 8; r++){
         cb[r][c] = new Blank(r,c); //!
@@ -20,21 +17,19 @@ public class Chessboard{
     for (int r = 0; r < cb.length; r++){
       for (int c = 0; c < cb[r].length; c++){
         if (c == cb[r].length - 1){
-          ans = ans + cb[r][c] + "\n" ;
+	    ans = ans + cb[r][c].toString() + "\n" ;
         }else{
-          ans = ans + cb[r][c] + " ";
+	    ans = ans + cb[r][c].toString() + " ";
         }
       }
     }
     return ans;
   }
 
-  public static void fillInPiecesStart(Chessboard c){
-    //Pawns for PlayerA
+  public static void fillInPiecesStart(Chesspieces[][]cb){
     for (int insertPawn = 0; insertPawn < 8; insertPawn++){
       Pawn wp1 = new Pawn(insertPawn, 1, 'a');
-      //cb[1][insertPawn] = wp1;
-      set(cb, wp1, 1, insertPawn);
+      cb[1][insertPawn] = wp1;
     }
     //Pawns for PlayerB
     for (int insertPawn = 0; insertPawn < 8; insertPawn++){
@@ -104,7 +99,7 @@ public class Chessboard{
 
 
 
-    public static void set(Chessboard c, Chesspieces x, int row, int col){
+    public static void set(Chesspieces[][]c, Chesspieces x, int row, int col){
 	//cb[locationtoInt(newlocation)/10][locationtoInt(newlocation)%10] = x;
 	c[row][col] = x;
 }

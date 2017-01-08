@@ -1,10 +1,12 @@
 
 public class King extends Chesspieces{
+    private boolean isDead;
     private int currentLocation;
     private char player;
     public King(int x, int y, char p){
 	currentLocation = 10*x + y;
 	player = p;
+	isDead = false;
     }
 
     public void move(String newlocation){

@@ -1,4 +1,5 @@
 public class Chessboard{
+    private data[][];
 
   public static void main (String[]args){
     Chessboard n = new Chessboard();
@@ -8,8 +9,8 @@ public class Chessboard{
   private Chesspieces[][]cb;
   public Chessboard(){
     cb = new Chesspieces[8][8];
-    for (int c = 0; c < 9; c++){
-      for (int r = 0; r < 9; r++){
+    for (int c = 0; c < 8; c++){
+      for (int r = 0; r < 8; r++){
         cb[r][c] = new Blank(r,c); //!
       }
     }
@@ -32,61 +33,80 @@ public class Chessboard{
     //Pawns for PlayerA
     for (int insertPawn = 0; insertPawn < 8; insertPawn++){
       Pawn wp1 = new Pawn(insertPawn, 1, 'a');
-      cb[1][insertPawn] = wp1;
+      //cb[1][insertPawn] = wp1;
+      set(cb, wp1, 1, insertPawn);
     }
     //Pawns for PlayerB
     for (int insertPawn = 0; insertPawn < 8; insertPawn++){
-    Pawn wp1 = new Pawn(insertPawn, 6, 'b');
-    cb[1][insertPawn] = wp1;
+	Pawn wp1 = new Pawn(insertPawn, 6, 'b');
+	//cb[1][insertPawn] = wp1;
+	set(cb, wp1, 6, insertPawn);
     }
     //Rooks for PlayerA
     Rook rka = new Rook(0, 0, 'a');
-    cb[0][0] = rka;
+    //cb[0][0] = rka;
+    set(cb, rka, 0, 0);
     Rook rka1 = new Rook(0, 7, 'a');
-    cb[0][7] = rka1;
+    //cb[0][7] = rka1;
+    set(cb, rka1, 0, 7);
     //Rooks for PlayerB
     Rook rkb = new Rook (7, 0, 'b');
-    cb[7][0] = rkb;
+    //cb[7][0] = rkb;
+    set(cb, rkb, 7, 0);
     Rook rkb1 = new Rook(7, 7, 'b');
-    cb[7][7] = rkb1;
+    //cb[7][7] = rkb1;
+    set(cb, rkb1, 7, 7);
     //Knight for PlayerA
     Knight kna = new Knight(0, 1, 'a');
-    cb[0][1] = kna;
+    //cb[0][1] = kna;
+    set(cb, kna, 0, 1);
     Knight kna1 = new Knight(0, 6, 'a');
-    cb[0][6] = kna1;
+    //cb[0][6] = kna1;
+    set(cb, kna1, 0, 6);
     //Knights for PlayerB
     Knight knb = new Knight(7, 1, 'b');
-    cb[7][1] = knb;
+    //cb[7][1] = knb;
+    set(cb, knb, 7, 1);
     Knight knb1 = new Knight(7, 6, 'b');
-    cb[7][6] = knb1;
+    //cb[7][6] = knb1;
+    set(cb, knb1, 7, 6);
     //Bishops for PlayerA
     Bishop bia = new Bishop(0, 2, 'a');
-    cb[0][2] = bia;
+    //cb[0][2] = bia;
+    set(cb, bia, 0, 2);
     Bishop bia1 = new Bishop(0, 5, 'a');
-    cb[0][5] = bia1;
+    //cb[0][5] = bia1;
+    set(cb, bia1, 0, 5);
     //Bishops for PlayerB
     Bishop bib = new Bishop(7, 5, 'b');
-    cb[7][5] = bib;
+    //cb[7][5] = bib;
+    set(cb, bib, 7, 5);
     Bishop bib1 = new Bishop(7, 2, 'b');
-    cb[7][2] = bib1;
+    //cb[7][2] = bib1;
+    set(cb, bib1, 7, 2);
     //Queen for PlayerA
     Queen qa = new Queen(0, 3, 'a');
-    cb[0][3] = qa;
+    //cb[0][3] = qa;
+    set(cb, qa, 0, 3);
     //Queen for PlayerB
     Queen qb = new Queen(7, 4, 'b');
-    cb[7][4] = qb;
+    //cb[7][4] = qb;
+    set(cb, qb, 7, 4);
     //King for PlayerA
     King ka = new King(0, 4, 'a');
-    cb[0][4] = ka;
+    //cb[0][4] = ka;
+    set(cb, ka, 0, 4);
     //King for PlayerB
     King kb = new King(7, 3, 'b');
-    cb[7][3] = kb;
+    //cb[7][3] = kb;
+    set(cb, kb, 7, 3);
   }
 
 
 
-public void set(Chesspieces x, String newlocation){
-  cb[locationtoInt(newlocation)/10][locationtoInt(newlocation)%10] = x;
+    public static void set(Chessboard c, Chesspieces x, int row, int col){
+	//cb[locationtoInt(newlocation)/10][locationtoInt(newlocation)%10] = x;
+	c[row][col] = x;
 }
 public Chesspieces get(String location){
   return cb[locationtoInt(location)/10][locationtoInt(location)%10];

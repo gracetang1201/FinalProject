@@ -20,6 +20,8 @@ public class Knight extends Chesspieces{
             Math.abs( super.locationtoInt(newlocation) - currentLocation ) == 9 ||
 	    Math.abs( super.locationtoInt(newlocation) - currentLocation ) == 8 ){
 	    return true;
+	}else{
+	    return false;
 	}
     }
 }

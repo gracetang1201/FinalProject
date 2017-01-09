@@ -1,16 +1,15 @@
 import java.io.*;
 import java.util.Scanner;
 import java.util.Arrays;
+import java.lang.NumberFormatException;
 /*
 public class Chessboard{
 private boolean KingIsAlive;
 private static Chesspieces[][]cb; //= new Chesspieces[8][8];
 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
 public static void main (String[]args){
 //Chesspieces[][] n = new Chesspieces[8][8];
 Chessboard n = new Chessboard();
-
 KingIsAlive = true;
 while(KingIsAlive){
 whiteTurn(cb);
@@ -41,7 +40,6 @@ ans = ans + cb[r][c].toString() + " ";
 }
 return ans;
 }
-
 public static void fillInPiecesStart(Chesspieces[][] cb){
 for (int insertPawn = 0; insertPawn < 8; insertPawn++){
 Pawn wp1 = new Pawn(insertPawn, 1, 'a');
@@ -134,8 +132,6 @@ cb[cur/10][cur%10].move(inttoLocation(newloc));
 cb[cur/10][cur%10] = new Blank(cur/10, cur%10);
 return "good move!";
 }
-
-
 }
 public String blackTurn(Chesspieces[][] cb){
 int cur = locationtoInt(br.readLine());
@@ -160,10 +156,7 @@ cb[cur/10][cur%10] = new Blank(cur/10, cur%10);
 return "good move!";
 }
 ;
-
 }
-
-
 public static void set(Chesspieces[][] c, Chesspieces x, int row, int col){
 //cb[locationtoInt(newlocation)/10][locationtoInt(newlocation)%10] = x;
 c[row][col] = x;
@@ -171,39 +164,10 @@ c[row][col] = x;
 public Chesspieces get(String location){
 return cb[locationtoInt(location)/10][locationtoInt(location)%10];
 }
-public static int locationtoInt(String location){
-int ret = 0;
-switch(location.substring(0,1)){
-case "a": ret =  10 + Integer.parseInt(location.substring(1));
-case "b": ret =  20 + Integer.parseInt(location.substring(1));
-case "c": ret =  30 + Integer.parseInt(location.substring(1));
-case "d": ret =  40 + Integer.parseInt(location.substring(1));
-case "e": ret =  50 + Integer.parseInt(location.substring(1));
-case "f": ret =  60 + Integer.parseInt(location.substring(1));
-case "g": ret =  70 + Integer.parseInt(location.substring(1));
-case "h": ret =  80 + Integer.parseInt(location.substring(1));
-default: break;
-}
-return ret;
-}
-public static String inttoLocation(int location){
-String ret;
-switch(location/10){
-case 1: ret =  "a" + location%10;
-case 2: ret =  "b" + location%10;
-case 3: ret =  "c" + location%10;
-case 4: ret =  "d" + location%10;
-case 5: ret =  "e" + location%10;
-case 6: ret =  "f" + location%10;
-case 7: ret =  "g" + location%10;
-case 8: ret =  "h" + location%10;
-default: break;
-}
+*/
 
-return ret;
-}
-}
-*/public class Chessboard{
+//}
+public class Chessboard{
 //instance variables:
 private boolean KingAlive;
 // private boolean whiteTurn;
@@ -224,7 +188,7 @@ public static void main(String[]args){
       String wturn;
       System.out.println("Player 1 turn: ");
       wturn = user_input.nextLine();
-      if (doAction(wturn)){
+      if (doAction(wturn,c.cb)){
         c.counter += 1;
       }
     }
@@ -232,7 +196,7 @@ public static void main(String[]args){
       String bturn;
       System.out.println("Player 2 turn: ");
       bturn = user_input.nextLine();
-      if (doAction(bturn)){
+      if (doAction(bturn,c.cb)){
         c.counter += 1;
       }
     }
@@ -266,47 +230,40 @@ public Chessboard(){
 	}
 	return ans;
     }
-    /*
-public String toString(){
-  String ans = "";
-  for (int r = 0; r < cb.length; r++){
-    for (int c = 0; c < cb[r].length; c++){
-      if (cb[r][c] instanceof Bishop){
-        ans += Bishop.toString();
-      }
-      if (cb[r][c] instanceof Blank){
-        ans += Blank.toString();
-      }
-      if (cb[r][c] instanceof King){
-        ans += King.toString();
-      }
-      if (cb[r][c] instanceof Pawn){
-        ans += Pawn.toString();
-      }
-      if (cb[r][c] instanceof Queen){
-        ans += Queen.toString();
-      }
-      if (cb[r][c] instanceof Rook){
-        ans += Rook.toString();
-      }
-      else {
-        ans += "INVALID";
-      }
-      if (c == cb[r].length - 1){
-        ans += "\n";
-      }
-        // ans += convString(cb[r][c]) + "\n";
-        // ans = ans + cb[r][c].toString() + "\n" ;
-       else{
-        ans += " ";
-        // ans += convString(cb[r][c]) + " ";
-        // ans = ans + cb[r][c].toString() + " ";
-      }
+
+    public static int locationtoInt(String location){
+	int ret = 0;
+	switch(location.substring(0,1)){
+	case "a": ret =  10 + Integer.parseInt(location.substring(1));
+	case "b": ret =  20 + Integer.parseInt(location.substring(1));
+	case "c": ret =  30 + Integer.parseInt(location.substring(1));
+	case "d": ret =  40 + Integer.parseInt(location.substring(1));
+	case "e": ret =  50 + Integer.parseInt(location.substring(1));
+	case "f": ret =  60 + Integer.parseInt(location.substring(1));
+	case "g": ret =  70 + Integer.parseInt(location.substring(1));
+	case "h": ret =  80 + Integer.parseInt(location.substring(1));
+	default: break;
+	}
+	return ret;
     }
-  }
-  return ans;
+
+public static String inttoLocation(int location){
+String ret = "";
+switch(location/10){
+case 1: ret =  "a" + location%10;
+case 2: ret =  "b" + location%10;
+case 3: ret =  "c" + location%10;
+case 4: ret =  "d" + location%10;
+case 5: ret =  "e" + location%10;
+case 6: ret =  "f" + location%10;
+case 7: ret =  "g" + location%10;
+case 8: ret =  "h" + location%10;
+default: break;
 }
-    */
+
+return ret;
+}
+
 private void set(Chesspieces c, int x, int y){
   cb[x][y] = c;
   c.currentLocation = 10*x+y;
@@ -382,38 +339,38 @@ public void fillInPiecesStart(){
   set(kb, 7, 3);
 }
 
-public static boolean doAction(String string){
+    public static boolean doAction(String string,Chesspieces[][] chb){
   String[] splitted = string.split("\\s+");
+  int curl;
+  // int newl;
+  Chesspieces piece;
   // System.out.println(Arrays.toString(splitted));
   if (splitted.length != 2){
     System.out.println("<current location> <new location>");
     return false;
   }
-  return true;
+  try{
+      
+      curl = locationtoInt(splitted[0]);
+      newl = locationtoInt(splitted[1]);
+      if(cb[curl/10][curl%10].toString().equals("P")){
+	  if(Math.abs(newl - curl) == 1 && !cb[newl/10][newl%10].toString().equals(".")){
+	      return false;
+	  }
+	  if(Math.abs(newl - curl) == 11 || Math.abs(newl - curl) == 9 && cb[newl/10][newl%10].toString().equals(".")){
+	      return false;
+	  }
+      }
+      // newl = locationtoInt(splitted[1]);
+      chb[curl%10][curl/10].move(splitted[1]);
+      
+
+      return true;
+  }catch (NumberFormatException e){
+      return false;
+  }
+  // return true; // no need this?????
 }
 
-// public static String convString(Chesspieces piece){
-//   if (piece instanceof Bishop){
-//     return Bishop.toString(piece);
-//   }
-//   if (piece instanceof Blank){
-//     return Blank.toString(piece);
-//   }
-//   if (piece instanceof King){
-//     return King.toString(piece);
-//   }
-//   if (piece instanceof Pawn){
-//     return Pawn.toString(piece);
-//   }
-//   if (piece instanceof Queen){
-//     return Queen.toString(piece);
-//   }
-//   if (piece instanceof Rook){
-//     return Rook.toString(piece);
-//   }
-//   else {
-//     return "INVALID";
-//   }
-// }
 
 }

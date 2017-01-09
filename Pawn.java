@@ -16,7 +16,7 @@ public class Pawn extends Chesspieces{
     }
     public boolean isValid(String newlocation){
 	int newloc = super.locationtoInt(newlocation);
-	if (currentLocation + 1 == newloc){
+	if (Math.abs(newloc-currentLocation) == 1){
 	    return true;
 	}
 	if (currentLocation + 2 == newloc){

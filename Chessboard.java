@@ -200,6 +200,7 @@ public class Chessboard{
 		bturn = user_input.nextLine();
 		if (doAction(bturn,c.cb)){
 		    c.counter += 1;
+		    System.out.println(c);
 		}
 	    }
 	    // whiteturn();
@@ -234,18 +235,29 @@ public class Chessboard{
     }
 
     public static int locationtoInt(String location){
+	// 	String realRet = "";
 	int ret = 0;
-	switch(location.substring(0,1)){
-	case "a": ret =  10 + Integer.parseInt(location.substring(1));
-	case "b": ret =  20 + Integer.parseInt(location.substring(1));
-	case "c": ret =  30 + Integer.parseInt(location.substring(1));
-	case "d": ret =  40 + Integer.parseInt(location.substring(1));
-	case "e": ret =  50 + Integer.parseInt(location.substring(1));
-	case "f": ret =  60 + Integer.parseInt(location.substring(1));
-	case "g": ret =  70 + Integer.parseInt(location.substring(1));
-	case "h": ret =  80 + Integer.parseInt(location.substring(1));
-	default: break;
-	}
+	String fir = location.substring(0,1);
+        ret += Integer.parseInt(location.substring(1));
+	if (fir.equals("a")) ret += 10;
+	if (fir.equals("b")) ret += 20;
+	if (fir.equals("c")) ret += 30;
+	if (fir.equals("d")) ret += 40;
+	if (fir.equals("e")) ret += 50;
+	if (fir.equals("f")) ret += 60;
+	if (fir.equals("g")) ret += 70;
+	if (fir.equals("h")) ret += 80;
+	//switch(location.substring(0,1)){
+	//case "a": ret =  10 + Integer.parseInt(location.substring(1));
+	//case "b": ret =  20 + Integer.parseInt(location.substring(1));
+	//case "c": ret =  30 + Integer.parseInt(location.substring(1));
+	//case "d": ret =  40 + Integer.parseInt(location.substring(1));
+	//case "e": ret =  50 + Integer.parseInt(location.substring(1));
+	//case "f": ret =  60 + Integer.parseInt(location.substring(1));
+	//case "g": ret =  70 + Integer.parseInt(location.substring(1));
+	//case "h": ret =  80 + Integer.parseInt(location.substring(1));
+	//default: break;
+	//} 
 	return ret;
     }
 
@@ -358,34 +370,50 @@ public class Chessboard{
       
 	    curl = locationtoInt(splitted[0]);
 	    newl = locationtoInt(splitted[1]);
-	    if(chb[curl/10][curl%10].toString().equals("P")){
+	    /* if(chb[curl/10][curl%10].toString().equals("P")){
 		if(Math.abs(newl - curl) == 1 && !chb[newl/10][newl%10].toString().equals(".")){
+		    System.out.println(1);
 		    return false;
 		}
 		if(Math.abs(newl - curl) == 11 || Math.abs(newl - curl) == 9 && chb[newl/10][newl%10].toString().equals(".")){
+		    System.out.println(2);
 		    return false;
 		}
-	    }
+		}*/
 
 	    curl = locationtoInt(splitted[0]);
 
 	    // newl = locationtoInt(splitted[1]);
 	    chb[curl/10][curl%10].move(splitted[1]);
+       
+	    
 	    chb[newl/10][newl%10] = chb[curl/10][curl%10];
+	    /*
+	    for (int i = 0; i < 8; i++) {
+		System.out.println(Arrays.toString(chb[i]));
+		}*/
+	    // System.out.println(locationtoInt(splitted[0]));
 
 	    return true;
 	}catch (NumberFormatException e){
 	    return false;
-	}catch (ArrayIndexOutOfBoundsException e){
-	    System.out.println("CURRENT");
-	    System.out.println(curl);
-	    System.out.println(curl/10);
-	    System.out.println(curl%10);
-	    System.out.println("NEW");
-	    System.out.println(newl);
-	    System.out.println(newl/10);
-	    System.out.println(newl%10);
-	}
+	}/*catch (ArrayIndexOutOfBoundsException e){
+	   System.out.println("CURRENT");
+	   System.out.println(curl);
+	   System.out.println(curl/10);
+	   System.out.println(curl%10);
+	   System.out.println("NEW");
+	   System.out.println(newl);
+	   System.out.println(newl/10);
+	   System.out.println(newl%10);
+	   System.out.println("-----");
+	   System.out.println(splitted[0]);
+	   System.out.println(splitted[1]);
+	   System.out.println("======");
+	   System.out.println(locationtoInt(splitted[0]));
+	   System.out.println(locationtoInt(splitted[1]));
+	   }*/
 	// return true; // no need this?????
     }
+}
 

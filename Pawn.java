@@ -5,7 +5,7 @@ public class Pawn extends Chesspieces{
 	currentLocation = 10*x + y;
 	player = p;
     }
-    public String toString(Pawn p){
+    public String toString(){
 	return "P";
     }
 

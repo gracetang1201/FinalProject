@@ -253,27 +253,41 @@ public Chessboard(){
   }
   fillInPiecesStart();
 }
+    public String toString(){
+	String ans = "";
+	for (int r = 0; r < cb.length; r++){
+	    for (int c = 0; c < cb[r].length; c++){
+		if (c == cb[r].length - 1){
+		    ans = ans + cb[r][c].toString() + "\n" ;
+		}else{
+		    ans = ans + cb[r][c].toString() + " ";
+		}
+	    }
+	}
+	return ans;
+    }
+    /*
 public String toString(){
   String ans = "";
   for (int r = 0; r < cb.length; r++){
     for (int c = 0; c < cb[r].length; c++){
       if (cb[r][c] instanceof Bishop){
-        ans += Bishop.toString(cb[r][c]);
+        ans += Bishop.toString();
       }
       if (cb[r][c] instanceof Blank){
-        ans += Blank.toString(cb[r][c]);
+        ans += Blank.toString();
       }
       if (cb[r][c] instanceof King){
-        ans += King.toString(cb[r][c]);
+        ans += King.toString();
       }
       if (cb[r][c] instanceof Pawn){
-        ans += Pawn.toString(cb[r][c]);
+        ans += Pawn.toString();
       }
       if (cb[r][c] instanceof Queen){
-        ans += Queen.toString(cb[r][c]);
+        ans += Queen.toString();
       }
       if (cb[r][c] instanceof Rook){
-        ans += Rook.toString(cb[r][c]);
+        ans += Rook.toString();
       }
       else {
         ans += "INVALID";
@@ -292,6 +306,7 @@ public String toString(){
   }
   return ans;
 }
+    */
 private void set(Chesspieces c, int x, int y){
   cb[x][y] = c;
   c.currentLocation = 10*x+y;

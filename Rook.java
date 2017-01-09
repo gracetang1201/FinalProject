@@ -5,7 +5,7 @@ public class Rook extends Chesspieces{
 	currentLocation = 10*x + y;
 	player = p;
     }
-    public String toString(Rook r){
+    public String toString(){
 	return "R";
     }
     public void move(String newlocation){

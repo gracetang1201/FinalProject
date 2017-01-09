@@ -1,12 +1,14 @@
 
 public class King extends Chesspieces{
-    private boolean isDead;
     private int currentLocation;
     private char player;
+    public static void main (String[]args){
+	King k = new King(0, 0, 'a');
+	System.out.println(k);
+    }
     public King(int x, int y, char p){
 	currentLocation = 10*x + y;
 	player = p;
-	isDead = false;
     }
 
     public void move(String newlocation){
@@ -15,8 +17,8 @@ public class King extends Chesspieces{
 	}
     }
 
-    public String toString(Blank k){
-      return "K";
+    public String toString(){
+	return("K");
     }
 
     public boolean isValid(String newlocation){

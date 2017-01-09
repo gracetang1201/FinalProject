@@ -5,7 +5,7 @@ public class Bishop extends Chesspieces{
 	currentLocation = 10*x + y;
 	player = p;
     }
-    public String toString(Bishop b){
+    public String toString(){
 	return "B";
     }
     public void move(String newlocation){

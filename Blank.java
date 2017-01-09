@@ -12,7 +12,7 @@ public class Blank extends Chesspieces{
   public boolean isValid(String newlocation){
     throw new UnsupportedOperationException();
   }
-  public String toString(Blank bl){
+  public String toString(){
     return ".";
   }
 }

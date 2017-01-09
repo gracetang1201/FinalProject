@@ -6,7 +6,7 @@ public class Queen extends Chesspieces{
 	currentLocation = 10*x + y;
 	player = p;
     }
-    public String toString (Queen q){
+    public String toString (){
 	return "Q";
     }
     public void move(String newlocation){

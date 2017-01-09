@@ -218,6 +218,7 @@ private Chesspieces[][]cb;
 public static void main(String[]args){
   Scanner user_input = new Scanner(System.in);
   Chessboard c = new Chessboard();
+  System.out.println(c); // prints chesboard
   while (c.KingAlive){
     while (c.counter%2!=0){
       String wturn;
@@ -256,10 +257,36 @@ public String toString(){
   String ans = "";
   for (int r = 0; r < cb.length; r++){
     for (int c = 0; c < cb[r].length; c++){
+      if (cb[r][c] instanceof Bishop){
+        ans += Bishop.toString(cb[r][c]);
+      }
+      if (cb[r][c] instanceof Blank){
+        ans += Blank.toString(cb[r][c]);
+      }
+      if (cb[r][c] instanceof King){
+        ans += King.toString(cb[r][c]);
+      }
+      if (cb[r][c] instanceof Pawn){
+        ans += Pawn.toString(cb[r][c]);
+      }
+      if (cb[r][c] instanceof Queen){
+        ans += Queen.toString(cb[r][c]);
+      }
+      if (cb[r][c] instanceof Rook){
+        ans += Rook.toString(cb[r][c]);
+      }
+      else {
+        ans += "INVALID";
+      }
       if (c == cb[r].length - 1){
-        ans = ans + cb[r][c].toString() + "\n" ;
-      }else{
-        ans = ans + cb[r][c].toString() + " ";
+        ans += "\n";
+      }
+        // ans += convString(cb[r][c]) + "\n";
+        // ans = ans + cb[r][c].toString() + "\n" ;
+       else{
+        ans += " ";
+        // ans += convString(cb[r][c]) + " ";
+        // ans = ans + cb[r][c].toString() + " ";
       }
     }
   }
@@ -350,15 +377,28 @@ public static boolean doAction(String string){
   return true;
 }
 
-// public static void whiteturn(){
-//   String wturn;
-//   System.out.println("Player 1 turn: ");
-//   wturn = user_input.next();
+// public static String convString(Chesspieces piece){
+//   if (piece instanceof Bishop){
+//     return Bishop.toString(piece);
+//   }
+//   if (piece instanceof Blank){
+//     return Blank.toString(piece);
+//   }
+//   if (piece instanceof King){
+//     return King.toString(piece);
+//   }
+//   if (piece instanceof Pawn){
+//     return Pawn.toString(piece);
+//   }
+//   if (piece instanceof Queen){
+//     return Queen.toString(piece);
+//   }
+//   if (piece instanceof Rook){
+//     return Rook.toString(piece);
+//   }
+//   else {
+//     return "INVALID";
+//   }
 // }
-//
-// public static void blackturn(){
-//   String bturn;
-//   System.out.println("Player 2 turn: ");
-//   bturn = user_input.next();
-// }
+
 }

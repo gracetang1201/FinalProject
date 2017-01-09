@@ -15,6 +15,10 @@ public class King extends Chesspieces{
 	}
     }
 
+    public String toString(Blank k){
+      return "K";
+    }
+
     public boolean isValid(String newlocation){
 	//horizontal:
 	if (Math.abs(locationtoInt(newlocation) - currentLocation) == 1^

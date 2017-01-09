@@ -209,6 +209,13 @@ public class Chessboard{
 	Chessboard n = new Chessboard();
 	
     }
+    public static void main(String[]args){
+	Chessboard c = new Chessboard();
+	while (c.KingAlive){
+	    whiteturn();
+	    blackturn();
+	}
+    }
     public Chessboard(){
 	KingAlive = true;
 	cb = new Chesspieces[8][8];

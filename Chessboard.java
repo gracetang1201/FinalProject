@@ -259,11 +259,19 @@ case 6: ret =  "f" + location%10;
 case 7: ret =  "g" + location%10;
 case 8: ret =  "h" + location%10;
 default: break;
+<<<<<<< HEAD
 }
 
 return ret;
 }
 
+=======
+}
+
+return ret;
+}
+
+>>>>>>> 89f64617c706ed2b331a80e003c8a9b0cae3420e
 private void set(Chesspieces c, int x, int y){
   cb[x][y] = c;
   c.currentLocation = 10*x+y;
@@ -350,6 +358,7 @@ public void fillInPiecesStart(){
     return false;
   }
   try{
+<<<<<<< HEAD
       
       curl = locationtoInt(splitted[0]);
       newl = locationtoInt(splitted[1]);
@@ -361,6 +370,9 @@ public void fillInPiecesStart(){
 	      return false;
 	  }
       }
+=======
+      curl = locationtoInt(splitted[0]);
+>>>>>>> 89f64617c706ed2b331a80e003c8a9b0cae3420e
       // newl = locationtoInt(splitted[1]);
       chb[curl%10][curl/10].move(splitted[1]);
       

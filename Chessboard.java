@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.Scanner;
+import java.util.Arrays;
 /*
 public class Chessboard{
 private boolean KingIsAlive;
@@ -221,16 +222,18 @@ public static void main(String[]args){
     while (c.counter%2!=0){
       String wturn;
       System.out.println("Player 1 turn: ");
-      wturn = user_input.next();
-      // do things
-      c.counter += 1;
+      wturn = user_input.nextLine();
+      if (doAction(wturn)){
+        c.counter += 1;
+      }
     }
     while (c.counter%2==0){
       String bturn;
       System.out.println("Player 2 turn: ");
-      bturn = user_input.next();
-      // do things
-      c.counter += 1;
+      bturn = user_input.nextLine();
+      if (doAction(bturn)){
+        c.counter += 1;
+      }
     }
     // whiteturn();
     // blackturn();
@@ -335,6 +338,16 @@ public void fillInPiecesStart(){
   King kb = new King(7, 3, 'b');
   //cb[7][3] = kb;
   set(kb, 7, 3);
+}
+
+public static boolean doAction(String string){
+  String[] splitted = string.split("\\s+");
+  // System.out.println(Arrays.toString(splitted));
+  if (splitted.length != 2){
+    System.out.println("<current location> <new location>");
+    return false;
+  }
+  return true;
 }
 
 // public static void whiteturn(){

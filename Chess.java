@@ -17,7 +17,7 @@ public class Chess{
 	    return "ya can't move your opponents pieces cheater";
 	}
 	if(cb[newloc/10][newloc%10].toString().equals("K")){
-	    KingIsDead = false;
+	    KingIsAlive = false;
 	    return "checkmate";
 	}
 	if(cb[cur/10][cur%10].toString().equals("P") &&

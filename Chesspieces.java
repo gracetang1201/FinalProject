@@ -1,5 +1,5 @@
 public abstract class Chesspieces{
-    private char player; 
+    public char player; 
 
   //example: a3 --> substring/parseInt into 'a' and 3 --> change into 13
   public int currentLocation;

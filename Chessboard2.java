@@ -49,10 +49,11 @@ public class Chessboard2{
     }
     public boolean doAction(String str){
 	int currentLocation = locationtoInt(str.substring(0,2));
-	//System.out.println(currentLocation);
 	int newLocation = locationtoInt(str.substring(3));
-	//System.out.println(newLocation);
 	set(get(currentLocation%10, currentLocation/10), newLocation%10, newLocation/10);
+	//cb[newLocation/10][newLocation%10] = cb[currentLocation/10][currentLocation%10];
+	Blank b = new Blank(currentLocation/10, currentLocation%10);
+	cb[currentLocation%10][currentLocation/10] = b;
 	return true;
     }
     public String toString(){

@@ -1,10 +1,10 @@
 import java.lang.UnsupportedOperationException;
 
 public class Blank extends Chesspieces{
-  private int currentLocation;
+  private String currentLocation;
 
   public Blank(int x, int y){
-    currentLocation = 10*x + y;
+    currentLocation = Integer.toString(x) + Integer.toString(y);
   }
   public void move(String newlocation){
     throw new UnsupportedOperationException();

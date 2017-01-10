@@ -2,7 +2,7 @@ public abstract class Chesspieces{
     public char player;
 
   //example: a3 --> substring/parseInt into 'a' and 3 --> change into 13
-  public int currentLocation;
+  public String currentLocation;
 
   //moves piece @ current to newlocation: use substring to analyze locations
   //maybe use a switch case to figure out what'a-e' represent in terms of
@@ -13,19 +13,21 @@ public abstract class Chesspieces{
   abstract boolean isValid(String newlocation);
 
 
-  public static int locationtoInt(String location){
-    int ret = 0;
-    switch(location.substring(0,1)){
-      case "a": ret =  10 + Integer.parseInt(location.substring(1));
-      case "b": ret =  20 + Integer.parseInt(location.substring(1));
-      case "c": ret =  30 + Integer.parseInt(location.substring(1));
-      case "d": ret =  40 + Integer.parseInt(location.substring(1));
-      case "e": ret =  50 + Integer.parseInt(location.substring(1));
-      case "f": ret =  60 + Integer.parseInt(location.substring(1));
-      case "g": ret =  70 + Integer.parseInt(location.substring(1));
-      case "h": ret =  80 + Integer.parseInt(location.substring(1));
-      default: break;
-    }
+  public static String locationtoInt(String location){ //string bc "00" for a1
+    String ret = "";
+    String beg = location.substring(0,1);
+    String end = location.substring(1);
+    int endInt = Integer.parseInt(end);
+    ret += Integer.toString(endInt-1);
+    if (beg.equals("a")) ret += "0";
+    if (beg.equals("b")) ret += "1";
+    if (beg.equals("c")) ret += "2";
+    if (beg.equals("d")) ret += "3";
+    if (beg.equals("e")) ret += "4";
+    if (beg.equals("f")) ret += "5";
+    if (beg.equals("g")) ret += "6";
+    if (beg.equals("h")) ret += "7";
     return ret;
   }
+  
 }

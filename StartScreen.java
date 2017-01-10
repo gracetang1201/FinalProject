@@ -55,6 +55,8 @@ public class StartScreen{
       System.out.println(ANSI_CYAN +"          type   :"+ ANSI_WHITE + "instructions          "+ ANSI_GREEN +"for instructions");
       System.out.println(ANSI_CYAN +"          type   :"+ ANSI_WHITE +"start                 "+ ANSI_GREEN +"to start game");
       System.out.println(ANSI_CYAN +"          type   :"+ ANSI_WHITE +"quit                  "+ ANSI_GREEN +"to quit at anytime"+ ANSI_RESET);
+      System.out.println();
+      System.out.print(">>> ");
     } catch(InterruptedException e){
       System.out.println("INTERRUPTED");
     }
@@ -104,22 +106,49 @@ public class StartScreen{
     System.out.println("PROMOTION??????????");
   }
 
+    public static void followCmd(String input){
+	if (input.equals("menu")){ // !!!!!!! AADDDDDDDDDD THIS TO MENU BROOO
+	    menu();
+	}
+	if (input.equals("instructions")){
+	    instruct();
+	}
+	if (input.equals("start")){
+	    System.out.println("start");
+	}
+	if (input.equals("quit")){
+	    System.exit(0);
+	    // break;
+	}
+    }
+
 
 
   public static void main(String[] args){
     System.out.print(ANSI_CLS);
     System.out.flush();
     Scanner input = new Scanner(System.in);
+    String comInp = "";
     initialSplash();
     menu();
-    String firstIn = input.next();
+    comInp = input.next();
+    while (!comInp.equals("start")){
+	followCmd(comInp);
+	System.out.print(">>> ");
+	comInp = input.next();
+    }
+    /*
     switch (firstIn){
-      case "instructions": instruct();
-      case "start": instruct();
+      case "instructions": 
+	  instruct();
+	  break;
+      case "start":
+	  System.exit(0);
+	  break;
       case "quit":
         System.exit(0);
         break;
-      }
+	}*/
     }
       // try{
       //   Thread.sleep(3000);

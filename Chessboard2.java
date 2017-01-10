@@ -7,17 +7,13 @@ public class Chessboard2{
     public static void main (String[]args){
 	Scanner user_input = new Scanner(System.in);
 	Chessboard2 c = new Chessboard2();
-<<<<<<< HEAD
-	King k = new King(4, 4, 'a');
-	Blank b = new Blank (0, 4);
-	c.set(k, 5, 4);
-	System.out.println(c);
-=======
-	King2 k = new King2(0, 0, 'a');
-	//set(
+
+	King2 king = new King2(4, 4, 'a');
+	Blank2 blank = new Blank2 (0, 4);
+	c.set(king, 5, 4);
 	System.out.println(c);
 
->>>>>>> 270a0c7697c8ae65ba3f383daf3b607f65bd8d7d
+
 	while (c.KingAlive){
 	    while(c.counter%2==0){
 		String wturn;
@@ -73,12 +69,9 @@ public class Chessboard2{
 	    return false;
 	}
 	set(get(currentLocation%10, currentLocation/10), newLocation%10, newLocation/10);
-<<<<<<< HEAD
-	Blank b = new Blank(currentLocation/10, currentLocation%10);
-=======
-	//cb[newLocation/10][newLocation%10] = cb[currentLocation/10][currentLocation%10];
+	//Blank2 b = new Blank(currentLocation/10, currentLocation%10);
 	Blank2 b = new Blank2(currentLocation/10, currentLocation%10);
->>>>>>> 270a0c7697c8ae65ba3f383daf3b607f65bd8d7d
+
 	cb[currentLocation%10][currentLocation/10] = b;
 	return true;
     }

@@ -200,6 +200,7 @@ public class Chessboard{
 		bturn = user_input.nextLine();
 		if (doAction(bturn,c.cb)){
 		    c.counter += 1;
+		    System.out.println(c);
 		}
 	    }
 	    // whiteturn();
@@ -234,18 +235,29 @@ public class Chessboard{
     }
 
     public static int locationtoInt(String location){
+	// 	String realRet = "";
 	int ret = 0;
-	switch(location.substring(0,1)){
-	case "a": ret =  10 + Integer.parseInt(location.substring(1));
-	case "b": ret =  20 + Integer.parseInt(location.substring(1));
-	case "c": ret =  30 + Integer.parseInt(location.substring(1));
-	case "d": ret =  40 + Integer.parseInt(location.substring(1));
-	case "e": ret =  50 + Integer.parseInt(location.substring(1));
-	case "f": ret =  60 + Integer.parseInt(location.substring(1));
-	case "g": ret =  70 + Integer.parseInt(location.substring(1));
-	case "h": ret =  80 + Integer.parseInt(location.substring(1));
-	default: break;
-	}
+	String fir = location.substring(0,1);
+        ret += Integer.parseInt(location.substring(1));
+	if (fir.equals("a")) ret += 10;
+	if (fir.equals("b")) ret += 20;
+	if (fir.equals("c")) ret += 30;
+	if (fir.equals("d")) ret += 40;
+	if (fir.equals("e")) ret += 50;
+	if (fir.equals("f")) ret += 60;
+	if (fir.equals("g")) ret += 70;
+	if (fir.equals("h")) ret += 80;
+	//switch(location.substring(0,1)){
+	//case "a": ret =  10 + Integer.parseInt(location.substring(1));
+	//case "b": ret =  20 + Integer.parseInt(location.substring(1));
+	//case "c": ret =  30 + Integer.parseInt(location.substring(1));
+	//case "d": ret =  40 + Integer.parseInt(location.substring(1));
+	//case "e": ret =  50 + Integer.parseInt(location.substring(1));
+	//case "f": ret =  60 + Integer.parseInt(location.substring(1));
+	//case "g": ret =  70 + Integer.parseInt(location.substring(1));
+	//case "h": ret =  80 + Integer.parseInt(location.substring(1));
+	//default: break;
+	//} 
 	return ret;
     }
 
@@ -268,115 +280,140 @@ public class Chessboard{
     }
 
 
-private void set(Chesspieces c, int x, int y){
-    cb[x][y] = c;
-    c.currentLocation = 10*x+y;
-}
-public void fillInPiecesStart(){
-    for (int insertPawn = 0; insertPawn < 8; insertPawn++){
-	Pawn wp1 = new Pawn(insertPawn, 1, 'a');
-	cb[1][insertPawn] = wp1;
+    private void set(Chesspieces c, int x, int y){
+	cb[x][y] = c;
+	c.currentLocation = 10*x+y;
     }
-    //Pawns for PlayerB
-    for (int insertPawn = 0; insertPawn < 8; insertPawn++){
-	Pawn wp1 = new Pawn(insertPawn, 6, 'b');
-	//cb[1][insertPawn] = wp1;
-	set(wp1, 6, insertPawn);
+    public void fillInPiecesStart(){
+	for (int insertPawn = 0; insertPawn < 8; insertPawn++){
+	    Pawn wp1 = new Pawn(insertPawn, 1, 'a');
+	    cb[1][insertPawn] = wp1;
+	}
+	//Pawns for PlayerB
+	for (int insertPawn = 0; insertPawn < 8; insertPawn++){
+	    Pawn wp1 = new Pawn(insertPawn, 6, 'b');
+	    //cb[1][insertPawn] = wp1;
+	    set(wp1, 6, insertPawn);
+	}
+	//Rooks for PlayerA
+	Rook rka = new Rook(0, 0, 'a');
+	//cb[0][0] = rka;
+	set(rka, 0, 0);
+	Rook rka1 = new Rook(0, 7, 'a');
+	//cb[0][7] = rka1;
+	set(rka1, 0, 7);
+	//Rooks for PlayerB
+	Rook rkb = new Rook (7, 0, 'b');
+	//cb[7][0] = rkb;
+	set(rkb, 7, 0);
+	Rook rkb1 = new Rook(7, 7, 'b');
+	//cb[7][7] = rkb1;
+	set(rkb1, 7, 7);
+	//Knight for PlayerA
+	Knight kna = new Knight(0, 1, 'a');
+	//cb[0][1] = kna;
+	set(kna, 0, 1);
+	Knight kna1 = new Knight(0, 6, 'a');
+	//cb[0][6] = kna1;
+	set(kna1, 0, 6);
+	//Knights for PlayerB
+	Knight knb = new Knight(7, 1, 'b');
+	//cb[7][1] = knb;
+	set(knb, 7, 1);
+	Knight knb1 = new Knight(7, 6, 'b');
+	//cb[7][6] = knb1;
+	set(knb1, 7, 6);
+	//Bishops for PlayerA
+	Bishop bia = new Bishop(0, 2, 'a');
+	//cb[0][2] = bia;
+	set(bia, 0, 2);
+	Bishop bia1 = new Bishop(0, 5, 'a');
+	//cb[0][5] = bia1;
+	set(bia1, 0, 5);
+	//Bishops for PlayerB
+	Bishop bib = new Bishop(7, 5, 'b');
+	//cb[7][5] = bib;
+	set(bib, 7, 5);
+	Bishop bib1 = new Bishop(7, 2, 'b');
+	//cb[7][2] = bib1;
+	set(bib1, 7, 2);
+	//Queen for PlayerA
+	Queen qa = new Queen(0, 3, 'a');
+	//cb[0][3] = qa;
+	set(qa, 0, 3);
+	//Queen for PlayerB
+	Queen qb = new Queen(7, 4, 'b');
+	//cb[7][4] = qb;
+	set(qb, 7, 4);
+	//King for PlayerA
+	King ka = new King(0, 4, 'a');
+	//cb[0][4] = ka;
+	set(ka, 0, 4);
+	//King for PlayerB
+	King kb = new King(7, 3, 'b');
+	//cb[7][3] = kb;
+	set(kb, 7, 3);
     }
-    //Rooks for PlayerA
-    Rook rka = new Rook(0, 0, 'a');
-    //cb[0][0] = rka;
-    set(rka, 0, 0);
-    Rook rka1 = new Rook(0, 7, 'a');
-    //cb[0][7] = rka1;
-    set(rka1, 0, 7);
-    //Rooks for PlayerB
-    Rook rkb = new Rook (7, 0, 'b');
-    //cb[7][0] = rkb;
-    set(rkb, 7, 0);
-    Rook rkb1 = new Rook(7, 7, 'b');
-    //cb[7][7] = rkb1;
-    set(rkb1, 7, 7);
-    //Knight for PlayerA
-    Knight kna = new Knight(0, 1, 'a');
-    //cb[0][1] = kna;
-    set(kna, 0, 1);
-    Knight kna1 = new Knight(0, 6, 'a');
-    //cb[0][6] = kna1;
-    set(kna1, 0, 6);
-    //Knights for PlayerB
-    Knight knb = new Knight(7, 1, 'b');
-    //cb[7][1] = knb;
-    set(knb, 7, 1);
-    Knight knb1 = new Knight(7, 6, 'b');
-    //cb[7][6] = knb1;
-    set(knb1, 7, 6);
-    //Bishops for PlayerA
-    Bishop bia = new Bishop(0, 2, 'a');
-    //cb[0][2] = bia;
-    set(bia, 0, 2);
-    Bishop bia1 = new Bishop(0, 5, 'a');
-    //cb[0][5] = bia1;
-    set(bia1, 0, 5);
-    //Bishops for PlayerB
-    Bishop bib = new Bishop(7, 5, 'b');
-    //cb[7][5] = bib;
-    set(bib, 7, 5);
-    Bishop bib1 = new Bishop(7, 2, 'b');
-    //cb[7][2] = bib1;
-    set(bib1, 7, 2);
-    //Queen for PlayerA
-    Queen qa = new Queen(0, 3, 'a');
-    //cb[0][3] = qa;
-    set(qa, 0, 3);
-    //Queen for PlayerB
-    Queen qb = new Queen(7, 4, 'b');
-    //cb[7][4] = qb;
-    set(qb, 7, 4);
-    //King for PlayerA
-    King ka = new King(0, 4, 'a');
-    //cb[0][4] = ka;
-    set(ka, 0, 4);
-    //King for PlayerB
-    King kb = new King(7, 3, 'b');
-    //cb[7][3] = kb;
-    set(kb, 7, 3);
-}
 
-public static boolean doAction(String string,Chesspieces[][] chb){
-    String[] splitted = string.split("\\s+");
-    int curl;
-    int newl;
-    Chesspieces piece;
-    // System.out.println(Arrays.toString(splitted));
-    if (splitted.length != 2){
-	System.out.println("<current location> <new location>");
-	return false;
-    }
-    try{
+    public static boolean doAction(String string,Chesspieces[][] chb){
+	String[] splitted = string.split("\\s+");
+	int curl = 0;
+	int newl = 0;
+	Chesspieces piece;
+	// System.out.println(Arrays.toString(splitted));
+	if (splitted.length != 2){
+	    System.out.println("<current location> <new location>");
+	    return false;
+	}
+	try{
 
       
-	curl = locationtoInt(splitted[0]);
-	newl = locationtoInt(splitted[1]);
-	if(chb[curl/10][curl%10].toString().equals("P")){
-	    if(Math.abs(newl - curl) == 1 && !chb[newl/10][newl%10].toString().equals(".")){
-		return false;
-	    }
-	    if(Math.abs(newl - curl) == 11 || Math.abs(newl - curl) == 9 && chb[newl/10][newl%10].toString().equals(".")){
-		return false;
-	    }
-	}
+	    curl = locationtoInt(splitted[0]);
+	    newl = locationtoInt(splitted[1]);
+	    /* if(chb[curl/10][curl%10].toString().equals("P")){
+		if(Math.abs(newl - curl) == 1 && !chb[newl/10][newl%10].toString().equals(".")){
+		    System.out.println(1);
+		    return false;
+		}
+		if(Math.abs(newl - curl) == 11 || Math.abs(newl - curl) == 9 && chb[newl/10][newl%10].toString().equals(".")){
+		    System.out.println(2);
+		    return false;
+		}
+		}*/
 
-	curl = locationtoInt(splitted[0]);
+	    curl = locationtoInt(splitted[0]);
 
-	// newl = locationtoInt(splitted[1]);
-	chb[curl/10][curl%10].move(splitted[1]);
-        chb[newl/10][newl%10] = chb[curl/10][curl%10];
+	    // newl = locationtoInt(splitted[1]);
+	    chb[curl/10][curl%10].move(splitted[1]);
+       
+	    
+	    chb[newl/10][newl%10] = chb[curl/10][curl%10];
+	    /*
+	    for (int i = 0; i < 8; i++) {
+		System.out.println(Arrays.toString(chb[i]));
+		}*/
+	    // System.out.println(locationtoInt(splitted[0]));
 
-	return true;
-    }catch (NumberFormatException e){
-	return false;
+	    return true;
+	}catch (NumberFormatException e){
+	    return false;
+	}/*catch (ArrayIndexOutOfBoundsException e){
+	   System.out.println("CURRENT");
+	   System.out.println(curl);
+	   System.out.println(curl/10);
+	   System.out.println(curl%10);
+	   System.out.println("NEW");
+	   System.out.println(newl);
+	   System.out.println(newl/10);
+	   System.out.println(newl%10);
+	   System.out.println("-----");
+	   System.out.println(splitted[0]);
+	   System.out.println(splitted[1]);
+	   System.out.println("======");
+	   System.out.println(locationtoInt(splitted[0]));
+	   System.out.println(locationtoInt(splitted[1]));
+	   }*/
+	// return true; // no need this?????
     }
-    // return true; // no need this?????
 }
-}
+

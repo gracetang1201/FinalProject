@@ -20,7 +20,7 @@ public class Chessboard{
 		String wturn;
 		System.out.println("Player 1 turn: ");
 		wturn = user_input.nextLine();
-		if (doAction(wturn,c.cb)){
+		if (doAction(wturn,c.cb,c)){
 		    c.counter += 1;
 		    System.out.println(c);
 
@@ -30,7 +30,7 @@ public class Chessboard{
 		String bturn;
 		System.out.println("Player 2 turn: ");
 		bturn = user_input.nextLine();
-		if (doAction(bturn,c.cb)){
+		if (doAction(bturn,c.cb,c)){
 		    c.counter += 1;
 		    System.out.println(c);
 		}
@@ -173,7 +173,7 @@ public class Chessboard{
 	set(kb, 7, 3);
     }
 
-    public static boolean doAction(String string,Chesspieces[][] chb){
+    public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
 	String[] splitted = string.split("\\s+");
 	int curl = 0;
 	int newl = 0;
@@ -189,7 +189,7 @@ public class Chessboard{
 	}
 
 	if (chb[newl/10][newl%10].toString().equals("K")){
-	    KingAlive = false;
+	    c.KingAlive = false;
 	    System.out.println("YOU WIN!");
 	    return true;
 	}
@@ -200,6 +200,11 @@ public class Chessboard{
 	}
     
 	try{
+	    if (!(chb[curl/10][curl%10].isValid(splitted[1]))){
+		System.out.println("Invalid move bro.");
+		return false;
+	    }
+
 	    chb[curl/10][curl%10].move(splitted[1]);
 
 

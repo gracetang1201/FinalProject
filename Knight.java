@@ -15,10 +15,12 @@ public class Knight extends Chesspieces{
     }
   }
   public boolean isValid(String newlocation){
-    if( Math.abs(Integer.parseInt(super.locationtoInt(newlocation)) - Integer.parseInt(currentLocation)) == 12 ||
-    Math.abs(Integer.parseInt(super.locationtoInt(newlocation)) - Integer.parseInt(currentLocation)) == 21 ||
-    Math.abs(Integer.parseInt(super.locationtoInt(newlocation)) - Integer.parseInt(currentLocation)) == 9 ||
-    Math.abs(Integer.parseInt(super.locationtoInt(newlocation)) - Integer.parseInt(currentLocation)) == 8 ){
+      int newl = Integer.parseInt(super.locationtoInt(newlocation));
+      int curl = Integer.parseInt(currentLocation);
+    if( Math.abs(newl - curl) == 12 ||
+	Math.abs(newl - curl) == 21 ||
+	Math.abs(newl - curl) == 9 ||
+	Math.abs(newl - curl) == 8 ){
       return true;
     }else{
       return false;

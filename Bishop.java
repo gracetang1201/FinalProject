@@ -14,8 +14,9 @@ public class Bishop extends Chesspieces{
     }
   }
   public boolean isValid(String newlocation){
-    if (Math.abs(Integer.parseInt(super.locationtoInt(newlocation)) - Integer.parseInt(currentLocation))%11 == 0||
-    Math.abs(Integer.parseInt(super.locationtoInt(newlocation)) - Integer.parseInt(currentLocation))%9 == 0){
+      int newl = Integer.parseInt(super.locationtoInt(newlocation));
+      int curl = Integer.parseInt(currentLocation);
+    if (Math.abs(newl - curl)%11 == 0 || Math.abs(newl - curl)%9 == 0){
       return true;
     }else{
       return false;

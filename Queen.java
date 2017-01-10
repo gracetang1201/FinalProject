@@ -16,10 +16,11 @@ public class Queen extends Chesspieces{
   }
   public boolean isValid (String newlocation){
     int newl = Integer.parseInt(super.locationtoInt(newlocation));
-    if (Math.abs(newl - Integer.parseInt(currentLocation))%11 == 0^
-    Math.abs(newl - Integer.parseInt(currentLocation))%9 == 0^
-    newl/10 == Integer.parseInt(currentLocation)/10^
-    newl%10 == Integer.parseInt(currentLocation)%10){
+    int curl = Integer.parseInt(currentLocation);x
+    if (Math.abs(newl - curl)%11 == 0^
+	Math.abs(newl - curl)%9 == 0^
+	newl/10 == curl/10^
+	newl%10 == curl%10){
       return true;
     }else{
       return false;

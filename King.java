@@ -1,4 +1,3 @@
-
 public class King extends Chesspieces{
   private String currentLocation;
   private char player;
@@ -22,11 +21,13 @@ public class King extends Chesspieces{
   }
 
   public boolean isValid(String newlocation){
+      int newl = Integer.parseInt(locationtoInt(newlocation));
+      int curl = Integer.parseInt(currentLocation);
     //horizontal:
-    if (Math.abs(Integer.parseInt(locationtoInt(newlocation)) - Integer.parseInt(currentLocation)) == 1^
-    Math.abs(Integer.parseInt(locationtoInt(newlocation)) - Integer.parseInt(currentLocation)) == 10^
-    Math.abs(Integer.parseInt(locationtoInt(newlocation)) - Integer.parseInt(currentLocation)) == 11^
-    Math.abs(Integer.parseInt(locationtoInt(newlocation)) - Integer.parseInt(currentLocation)) == 9){
+    if (Math.abs(newl - curl) == 1 ^ 
+	Math.abs(newl - curl) == 10 ^ 
+	Math.abs(newl - curl) == 11 ^ 
+	Math.abs(newl - curl) == 9){
       return true;
     }else{
       return false;

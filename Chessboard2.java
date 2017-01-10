@@ -1,3 +1,4 @@
+import java.lang.*;
 import java.util.Scanner;
 public class Chessboard2{
     private Chesspieces[][]cb;
@@ -6,10 +7,10 @@ public class Chessboard2{
     public static void main (String[]args){
 	Scanner user_input = new Scanner(System.in);
 	Chessboard2 c = new Chessboard2();
-	King k = new King(0, 0, 'a');
-	//set(
+	King k = new King(4, 4, 'a');
+	Blank b = new Blank (0, 4);
+	c.set(k, 5, 4);
 	System.out.println(c);
-	
 	while (c.KingAlive){
 	    while(c.counter%2==0){
 		String wturn;
@@ -45,13 +46,26 @@ public class Chessboard2{
     }
     public void set(Chesspieces c, int x, int y){
 	cb[x][y] = c;
-	c.currentLocation = 10*y + x;
     }
     public boolean doAction(String str){
 	int currentLocation = locationtoInt(str.substring(0,2));
 	int newLocation = locationtoInt(str.substring(3));
+	if (cb[currentLocation%10][currentLocation/10].toString().equals(".")){
+	    System.out.println("theres nothing there dummy");
+	    return false;
+	}
+
+	  
+	if (cb[newLocation%10][newLocation/10].toString().equals("K")){
+	    KingAlive = false;
+	    System.out.println("YOU WON YOU GO MY DUDE");
+	}
+	if (cb[currentLocation%10][currentLocation/10].toString().equals("P")&&
+	    Math.abs(newLocation - currentLocation) == 1&&
+	    !cb[newLocation%10][currentLocation/10].toString().equals(".")){
+	    return false;
+	}
 	set(get(currentLocation%10, currentLocation/10), newLocation%10, newLocation/10);
-	//cb[newLocation/10][newLocation%10] = cb[currentLocation/10][currentLocation%10];
 	Blank b = new Blank(currentLocation/10, currentLocation%10);
 	cb[currentLocation%10][currentLocation/10] = b;
 	return true;

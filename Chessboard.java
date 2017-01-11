@@ -189,6 +189,9 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
   } catch (StringIndexOutOfBoundsException e){
     System.out.println("<current location> <new location>");
     return false;
+  } catch (NumberFormatException e){
+    System.out.println("<current location> <new location>");
+    return false;
   }
 
   // System.out.println(Arrays.toString(splitted));
@@ -230,10 +233,10 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
     // System.out.println(locationtoInt(splitted[0]));
 
     return true;
-  } catch (NumberFormatException e){
+  }/* catch (NumberFormatException e){
     System.out.println("<current location> <new location>");
     return false;
-  } catch (ArrayIndexOutOfBoundsException e){
+    }*/ catch (ArrayIndexOutOfBoundsException e){
     System.out.println("Out the bounds of chessboard.");
     System.out.println("<current location> <new location>");
     return false;

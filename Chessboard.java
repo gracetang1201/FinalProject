@@ -179,6 +179,10 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
   int newl = 0;
   Chesspieces piece;
 
+  if (string.equals("quit")){
+    System.exit(0);
+  }
+
   try{
     curl = Integer.parseInt(locationtoInt(splitted[0]));
     newl = Integer.parseInt(locationtoInt(splitted[1]));
@@ -208,6 +212,9 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
 
     if (!(chb[curl/10][curl%10].isValid(splitted[1]))){
       System.out.println("Invalid move bro.");
+      // System.out.println(locationtoInt(splitted[1]));
+      // System.out.println(curl);
+      // System.out.println(chb[curl/10][curl%10].currentLocation);
       return false;
     }
 

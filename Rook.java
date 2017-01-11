@@ -2,7 +2,7 @@ public class Rook extends Chesspieces{
   private String currentLocation;
   private char player;
   public Rook(int x, int y, char p){
-    currentLocation = Integer.toString(x) + Integer.toString(y);
+    currentLocation = Integer.toString(y) + Integer.toString(x);
     player = p;
   }
   public String toString(){

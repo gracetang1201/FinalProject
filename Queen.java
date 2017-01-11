@@ -3,7 +3,7 @@ public class Queen extends Chesspieces{
   private char player;
   private String currentLocation;
   public Queen(int x, int y, char p){
-    currentLocation = Integer.toString(x) + Integer.toString(y);
+    currentLocation = Integer.toString(y) + Integer.toString(x);
     player = p;
   }
   public String toString (){

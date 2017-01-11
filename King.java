@@ -6,7 +6,7 @@ public class King extends Chesspieces{
     System.out.println(k);
   }
   public King(int x, int y, char p){
-    currentLocation = Integer.toString(x) + Integer.toString(y);
+    currentLocation = Integer.toString(y) + Integer.toString(x);
     player = p;
   }
 
@@ -24,9 +24,9 @@ public class King extends Chesspieces{
       int newl = Integer.parseInt(locationtoInt(newlocation));
       int curl = Integer.parseInt(currentLocation);
     //horizontal:
-    if (Math.abs(newl - curl) == 1 ^ 
-	Math.abs(newl - curl) == 10 ^ 
-	Math.abs(newl - curl) == 11 ^ 
+    if (Math.abs(newl - curl) == 1 ^
+	Math.abs(newl - curl) == 10 ^
+	Math.abs(newl - curl) == 11 ^
 	Math.abs(newl - curl) == 9){
       return true;
     }else{

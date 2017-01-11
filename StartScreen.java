@@ -54,9 +54,9 @@ public class StartScreen{
       System.out.println();
       System.out.println(ANSI_CYAN +"          type   :"+ ANSI_WHITE + "instructions          "+ ANSI_GREEN +"for instructions");
       System.out.println(ANSI_CYAN +"          type   :"+ ANSI_WHITE +"start                 "+ ANSI_GREEN +"to start game");
+      System.out.println(ANSI_CYAN +"          type   :"+ ANSI_WHITE + "menu                  "+ ANSI_GREEN +"to display menu again");
       System.out.println(ANSI_CYAN +"          type   :"+ ANSI_WHITE +"quit                  "+ ANSI_GREEN +"to quit at anytime"+ ANSI_RESET);
       System.out.println();
-      System.out.print(">>> ");
     } catch(InterruptedException e){
       System.out.println("INTERRUPTED");
     }
@@ -114,11 +114,10 @@ public class StartScreen{
 	    instruct();
 	}
 	if (input.equals("start")){
-	    System.out.println("start");
+	    Chessboard.main(new String[0]);
 	}
 	if (input.equals("quit")){
 	    System.exit(0);
-	    // break;
 	}
     }
 
@@ -131,33 +130,13 @@ public class StartScreen{
     String comInp = "";
     initialSplash();
     menu();
+    System.out.print(">>> ");
     comInp = input.next();
-    while (!comInp.equals("start")){
+    while (!comInp.equals("quit")){
 	followCmd(comInp);
 	System.out.print(">>> ");
 	comInp = input.next();
     }
-    /*
-    switch (firstIn){
-      case "instructions": 
-	  instruct();
-	  break;
-      case "start":
-	  System.exit(0);
-	  break;
-      case "quit":
-        System.exit(0);
-        break;
-	}*/
-    }
-      // try{
-      //   Thread.sleep(3000);
-      //   System.out.flush();
-      // } catch(InterruptedException e){
-      //   System.out.println("INTERRUPTED");
-      // }
-      // break;
-    // }
-  // }
+  }
 
 }

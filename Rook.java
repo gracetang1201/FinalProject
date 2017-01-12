@@ -8,9 +8,12 @@ public class Rook extends Chesspieces{
   public String toString(){
     return "R";
   }
-  public void move(String newlocation){
+  public boolean move(String newlocation){
     if(isValid (newlocation)){
       currentLocation = locationtoInt(newlocation);
+      return true;
+    }else{
+	return false;
     }
   }
   public boolean isValid(String newlocation){

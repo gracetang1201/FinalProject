@@ -2,12 +2,14 @@ import java.lang.UnsupportedOperationException;
 
 public class Blank extends Chesspieces{
   private String currentLocation;
+    private char player;
 
-  public Blank(int x, int y){
+    public Blank(int x, int y){
     currentLocation = Integer.toString(y) + Integer.toString(x);
+    player = 'n';
   }
-  public void move(String newlocation){
-    throw new UnsupportedOperationException();
+  public boolean move(String newlocation){
+    return false;
   }
   public boolean isValid(String newlocation){
     throw new UnsupportedOperationException();

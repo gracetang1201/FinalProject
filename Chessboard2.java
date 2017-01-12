@@ -57,8 +57,12 @@ public class Chessboard2{
 	    System.out.println("theres nothing there dummy");
 	    return false;
 	}
-
-	  
+	/*
+	if ((cb[currentLocation%10][currentLocation/10].player + "").equals(cb[newLocation%10][newLocation/10].player + "")){
+	    System.out.println("you can't eat yoself");
+	    return false;
+	}
+	*/
 	if (cb[newLocation%10][newLocation/10].toString().equals("K")){
 	    KingAlive = false;
 	    System.out.println("YOU WON YOU GO MY DUDE");
@@ -82,7 +86,7 @@ public class Chessboard2{
 		if (c == cb[r].length - 1){
 		    ans = ans + cb[r][c].toString() + "\n" ;
 		}else{
-		    ans = ans + cb[r][c].toString() + "";
+		    ans = ans + cb[r][c].toString() + " ";
 		}
 	    }
 	}

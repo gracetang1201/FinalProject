@@ -10,9 +10,12 @@ public class King extends Chesspieces{
     player = p;
   }
 
-  public void move(String newlocation){
+  public boolean move(String newlocation){
     if (isValid(newlocation)){
       currentLocation = locationtoInt(newlocation);
+      return true;
+    }else{
+	return false;
     }
   }
 

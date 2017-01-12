@@ -8,7 +8,7 @@ public abstract class Chesspieces{
   //maybe use a switch case to figure out what'a-e' represent in terms of
   //2d array
   //the first thing move is going to do is change newlocation to int
-  abstract void move(String newlocation);
+  abstract boolean move(String newlocation);
 
   abstract boolean isValid(String newlocation);
 

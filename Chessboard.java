@@ -52,14 +52,21 @@ public class Chessboard{
     public String toString(){
 	String ans = "";
 	for (int r = 0; r < cb.length; r++){
-	    for (int c = 0; c < cb[r].length; c++){
-		if (c == cb[r].length - 1){
-		    ans = ans + cb[r][c].toString() + "\n" ;
+	    for (int c = 0; c < cb[r].length; c++){){
+		if ((cb[r][c].player + "").equals("a")){
+		    ans = ans + "\u001B[37m" + cb[r][c].toString() + "\n" + "\u001B[0m";
+		}else{
+		    ans = ans + "\u001B[37m" + cb[r][c].toString() + " " + "\u001B[0m";
+		}
+		if ((cb[r][c].player + "").equals("b")){
+		    ans = ans + cb[r][c].toString() + "\n";
 		}else{
 		    ans = ans + cb[r][c].toString() + " ";
 		}
 	    }
+	    
 	}
+	
 	return ans;
     }
 

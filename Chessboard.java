@@ -205,6 +205,23 @@ public class Chessboard{
 		return true;
 	    }
 
+	    if (!(chb[curl/10][curl%10].toString().equals("N"))){
+		System.out.println("step1");
+		System.out.println(chb[curl/10][curl%10].player);
+		if (Character.toString(chb[curl/10][curl%10].player).equals("a")){
+		    System.out.println("stepdos");
+		    if (!(chb[(curl/10)+1][curl%10].toString().equals("."))){
+			System.out.println("Ya can't skip people.");
+			    return false;
+			}
+		}else{           
+		    if (!(chb[(curl/10)-1][curl%10].toString().equals("."))){
+			System.out.println("Ya can't skip people.");
+			return false;
+		    }
+		}
+	    }
+
 	    if (chb[curl/10][curl%10].toString().equals(".")){
 		System.out.println("Nuthin' here to move.");
 		return false;

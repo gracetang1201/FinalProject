@@ -20,7 +20,7 @@ public class Pawn extends Chesspieces{
   public boolean isValid(String newlocation){
     int newloc = Integer.parseInt(super.locationtoInt(newlocation));
     int curren = Integer.parseInt(currentLocation);
-    if ((player + "").equals("a")){
+    if ((Character.toString(player)).equals("a")){
 	if (newloc-curren == 10){
 	    return true;
 	}
@@ -29,10 +29,16 @@ public class Pawn extends Chesspieces{
 	    return true;
 	}	
     }
-    if (curren + 20 == newloc){
-      return true;
+    if ((Character.toString(player)).equals("a")){
+	if (newloc-curren == 20){
+	    return true;
+	}
+    }else{
+	if (newloc-curren == -20){
+	    return true;
+	}
     }
-    if (curren + 11 == newloc){ // not valid if nothing in newloc
+    if (curren + 11 == newloc){ // not valid if nothing in newloc !!!!!!!!!
       return true;
     }
     if (curren + 9 == newloc){ // not valid if nothing in new loc
@@ -40,6 +46,8 @@ public class Pawn extends Chesspieces{
     }
     else{
       System.out.println(currentLocation);
+      System.out.println(newlocation);
+      System.out.println(super.locationtoInt(newlocation));
       System.out.println("hi");
       return false;
     }

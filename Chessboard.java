@@ -57,9 +57,6 @@ public class Chessboard{
     String ans = "";
     for (int r = 0; r < cb.length; r++){
       for (int c = 0; c < cb[r].length; c++){
-        // System.out.println("hi");
-        // System.out.println(cb[r][c].player);
-        // System.out.println("bye");
         if (c == cb[r].length - 1){
           if (cb[r][c].getPlayer().equals("a")){
             ans += ANSI_BLUE;
@@ -226,10 +223,7 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
     }
 
     if (!(chb[curl/10][curl%10].toString().equals("N"))){
-      System.out.println("step1");
-      System.out.println(chb[curl/10][curl%10].player);
-      if (Character.toString(chb[curl/10][curl%10].player).equals("a")){
-        System.out.println("stepdos");
+      if (chb[curl/10][curl%10].getPlayer().equals("a")){
         if (!(chb[(curl/10)+1][curl%10].toString().equals("."))){
           System.out.println("Ya can't skip people.");
           return false;

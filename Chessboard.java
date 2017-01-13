@@ -236,6 +236,18 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
 	((newl - curl) == -11 || (newl - curl) == -9)){
 	return false;
     }
+    if (chb[curlL][curlR].getPlayer().equals("a") &&
+	chb[curlL][curlR].toString().equals("P") &&
+	!chb[newlL][newlR].toString().equals(".") &&
+	((newl - curl) == 1)){
+	return false;
+    }
+    if (chb[curlL][curlR].getPlayer().equals("b") &&
+	chb[curlL][curlR].toString().equals("P") &&
+	!chb[newlL][newlR].toString().equals(".") &&
+	((newl - curl) == -1)){
+	return false;
+    }
     if (chb[newlL][newlR].toString().equals("K") &&
         !(chb[curlL][curlR].getPlayer().equals(chb[newlL][newlR].getPlayer()))){
       c.KingAlive = false;

@@ -193,7 +193,11 @@ public void fillInPiecesStart(){
 public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
   String[] splitted = string.split("\\s+");
   int curl = 0;
+  int curlL = 0;
+  int curlR = 0;
   int newl = 0;
+  int newlL = 0;
+  int newlR = 0;
   Chesspieces piece;
 
   if (string.equals("quit")){
@@ -201,7 +205,12 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
   }
   try{
     curl = Integer.parseInt(locationtoInt(splitted[0]));
+    curlL = curl/10;
+    curlR = curl%10;
     newl = Integer.parseInt(locationtoInt(splitted[1]));
+    newlL = newl/10;
+    newlR = newl%10;
+
   } catch (StringIndexOutOfBoundsException e){
     System.out.println("<current location> <new location>");
     return false;
@@ -216,38 +225,44 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
       return false;
     }
 
-    if (chb[newl/10][newl%10].toString().equals("K")){
+    if (chb[newlL][newlR].toString().equals("K") &&
+        !(chb[curlL][curlR].getPlayer().equals(chb[newlL][newlR].getPlayer()))){
       c.KingAlive = false;
       System.out.println("YOU WIN!");
       return true;
     }
 
-    if (!(chb[curl/10][curl%10].toString().equals("N"))){
-      if (chb[curl/10][curl%10].getPlayer().equals("a")){
-        if (!(chb[(curl/10)+1][curl%10].toString().equals("."))){
+    if (chb[curlL][curlR].toString().equals(".")){
+      System.out.println("Nuthin' here to move.");
+      return false;
+    }
+
+    if(chb[curlL][curlR].getPlayer().equals(chb[newlL][newlR].getPlayer())){
+      System.out.println("Don't eat yourself");
+      return false;
+    }
+
+    if (!(chb[curlL][curlR].toString().equals("N"))){
+      if (chb[curlL][curlR].getPlayer().equals("a")){
+        if (!(chb[(curlL)+1][curlR].toString().equals("."))){
           System.out.println("Ya can't skip people.");
           return false;
         }
       }else{
-        if (!(chb[(curl/10)-1][curl%10].toString().equals("."))){
+        if (!(chb[curlL-1][curlR].toString().equals("."))){
           System.out.println("Ya can't skip people.");
           return false;
         }
       }
     }
 
-    if (chb[curl/10][curl%10].toString().equals(".")){
-      System.out.println("Nuthin' here to move.");
-      return false;
-    }
-
-    if (!(chb[curl/10][curl%10].isValid(splitted[1]))){
+    if (!(chb[curlL][curlR].isValid(splitted[1]))){
       System.out.println("Invalid move bro.");
       return false;
     }
-    chb[curl/10][curl%10].move(splitted[1]);
-    chb[newl/10][newl%10] = chb[curl/10][curl%10];
-    chb[curl/10][curl%10] = new Blank(curl/10, curl%10);
+    chb[curlL][curlR].move(splitted[1]);
+    chb[newlL][newlR] = chb[curlL][curlR];
+    chb[curlL][curlR] = new Blank(curlL, curlR);
     return true;
   }catch (ArrayIndexOutOfBoundsException e){
     System.out.println("Out the bounds of chessboard.");

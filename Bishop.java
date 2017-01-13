@@ -8,6 +8,11 @@ public class Bishop extends Chesspieces{
   public String toString(){
     return "B";
   }
+
+  public String getPlayer(){
+    return Character.toString(player);
+  }
+
   public boolean move(String newlocation){
     if(isValid (newlocation)){
       currentLocation = locationtoInt(newlocation);

@@ -8,6 +8,11 @@ public class Blank extends Chesspieces{
     currentLocation = Integer.toString(y) + Integer.toString(x);
     player = 'n';
   }
+
+  public String getPlayer(){
+    return Character.toString(player);
+  }
+
   public boolean move(String newlocation){
     return false;
   }

@@ -9,6 +9,10 @@ public class Pawn extends Chesspieces{
     return "P";
   }
 
+  public String getPlayer(){
+    return Character.toString(player);
+  }
+
   public boolean  move(String newlocation){
     if(isValid(newlocation)){
       currentLocation = locationtoInt(newlocation);
@@ -27,7 +31,7 @@ public class Pawn extends Chesspieces{
     }else{
 	if (newloc-curren == -10){
 	    return true;
-	}	
+	}
     }
     if ((Character.toString(player)).equals("a")){
 	if (newloc-curren == 20){

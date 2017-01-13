@@ -9,6 +9,11 @@ public class Queen extends Chesspieces{
   public String toString (){
     return "Q";
   }
+
+  public String getPlayer(){
+    return Character.toString(player);
+  }
+
   public boolean move(String newlocation){
     if(isValid (newlocation)){
       currentLocation = locationtoInt(newlocation);

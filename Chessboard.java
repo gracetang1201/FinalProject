@@ -290,14 +290,14 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
     if (chb[curlL][curlR].getPlayer().equals("a") &&
     chb[curlL][curlR].toString().equals("P") &&
     !chb[newlL][newlR].toString().equals(".") &&
-    ((newl - curl) == 1)){
+    ((newl - curl) == 10)){
       System.out.println("you can't have a pawn eat in front.");
       return false;
     }
     if (chb[curlL][curlR].getPlayer().equals("b") &&
     chb[curlL][curlR].toString().equals("P") &&
     !chb[newlL][newlR].toString().equals(".") &&
-    ((newl - curl) == -1)){
+    ((newl - curl) == -10)){
       System.out.println("you can't have a pawn eat in front.");
       return false;
     }
@@ -323,6 +323,7 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
     }
 
     // if user tries to move a piece (that is not a knight) when another chesspiece is in front
+    /*
     if (!(chb[curlL][curlR].toString().equals("N"))){
       if (chb[curlL][curlR].getPlayer().equals("a")){
         if (!(chb[(curlL)+1][curlR].toString().equals("."))){
@@ -336,7 +337,7 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
         }
       }
     }
-
+    */
     // if move is not valid via chess rules
     if (!(chb[curlL][curlR].isValid(splitted[1]))){
       System.out.println("Invalid move bro.");

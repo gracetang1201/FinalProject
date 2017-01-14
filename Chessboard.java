@@ -9,6 +9,8 @@ public class Chessboard{
   private boolean KingAlive;
   private int counter;
   private Chesspieces[][]cb;
+    private boolean firstMoveA;
+    private boolean firstMoveB;
 
   public static final String ANSI_BLUE = "\u001B[34m";
   public static final String ANSI_RED = "\u001B[31m";
@@ -27,7 +29,9 @@ public class Chessboard{
         if (doAction(wturn,c.cb,c)){
           c.counter += 1;
           System.out.println(c);
-
+	  if (c.firstMoveA){
+	      c.firstMoveA = false;
+	  }
         }
       }
       while (c.counter%2==0){
@@ -37,12 +41,17 @@ public class Chessboard{
         if (doAction(bturn,c.cb,c)){
           c.counter += 1;
           System.out.println(c);
+	  if (c.firstMoveB){
+	      c.firstMoveB = false;
+	  }
         }
       }
     }
   }
 
   public Chessboard(){
+      firstMoveA = true;
+      firstMoveB = true; 
     KingAlive = true;
     counter = 1;
     cb = new Chesspieces[8][8];
@@ -246,28 +255,44 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
 	System.out.println("you can't move other peoples pieces cheater");
 	return false;
     }
+    if (chb[curlL][curlR].toString().equals("P") &&
+	Math.abs(newl - curl) == 20 &&
+	chb[curlL][curlR].getPlayer().equals("a")&&
+	!c.firstMoveA){
+	return false;
+    }
+    if (chb[curlL][curlR].toString().equals("P") &&
+	Math.abs(newl - curl) == 20 &&
+	chb[curlL][curlR].getPlayer().equals("b")&&
+	!c.firstMoveB){
+	return false;
+    }	
     if (chb[curlL][curlR].getPlayer().equals("a") &&
 	chb[curlL][curlR].toString().equals("P") &&
 	chb[newlL][newlR].toString().equals(".") &&
 	((newl - curl) == 11 || (newl - curl) == 9)){
+	System.out.println("you can't move a pawn diagonally except to eat");
 	return false;
     }
     if (chb[curlL][curlR].getPlayer().equals("b") &&
 	chb[curlL][curlR].toString().equals("P") &&
 	chb[newlL][newlR].toString().equals(".") &&
 	((newl - curl) == -11 || (newl - curl) == -9)){
+	System.out.println("you can't move a pawn diagonally except to eat");
 	return false;
     }
     if (chb[curlL][curlR].getPlayer().equals("a") &&
 	chb[curlL][curlR].toString().equals("P") &&
 	!chb[newlL][newlR].toString().equals(".") &&
 	((newl - curl) == 1)){
+	System.out.println("you can't have a pawn eat in front.");
 	return false;
     }
     if (chb[curlL][curlR].getPlayer().equals("b") &&
 	chb[curlL][curlR].toString().equals("P") &&
 	!chb[newlL][newlR].toString().equals(".") &&
 	((newl - curl) == -1)){
+	System.out.println("you can't have a pawn eat in front.");
 	return false;
     }
     if (chb[newlL][newlR].toString().equals("K") &&

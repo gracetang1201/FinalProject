@@ -42,8 +42,8 @@ public class Chessboard{
   }
 
   public Chessboard(){
-      firstMoveA = true;
-      firstMoveB = true; 
+    firstMoveA = true;
+    firstMoveB = true;
     KingAlive = true;
     counter = 1;
     cb = new Chesspieces[8][8];
@@ -54,64 +54,75 @@ public class Chessboard{
     }
     fillInPiecesStart();
   }
-    /*
+  /*
   public String toString(){
-    String ans = "";
-    for (int r = 0; r < cb.length; r++){
-      for (int c = 0; c < cb[r].length; c++){
-        if (c == cb[r].length - 1){
-          if (cb[r][c].getPlayer().equals("a")){
-            ans += ANSI_BLUE;
-          }
-          if (cb[r][c].getPlayer().equals("b")){
-            ans += ANSI_RED;
-          }
-          ans += cb[r][c].toString() + ANSI_RESET + "\n";
-        }else{
-          if (cb[r][c].getPlayer().equals("a")){
-            ans += ANSI_BLUE;
-          }
-          if (cb[r][c].getPlayer().equals("b")){
-            ans += ANSI_RED;
-          }
-          ans = ans + cb[r][c].toString() + ANSI_RESET + " ";
-        }
-      }
-
-    }
-    return ans;
-  }
-    */
-    public String toString(){
-	String ans = "";
-	for (int r = 0; r < cb.length; r++){
-	    for (int c = 0; c < cb[r].length; c++){
-		if (c == cb[r].length - 1){
-		    ans = ans + cb[r][c].toString() + "\n" ;
-		}else{
-		    ans = ans + cb[r][c].toString() + " ";
-		}
-	    }
-	}
-	return ans;
-    }
-  public static String locationtoInt(String location){ //string bc "00" for a1
-  String ret = "";
-  String beg = location.substring(0,1);
-  String end = location.substring(1);
-  int endInt = Integer.parseInt(end);
-  ret += Integer.toString(endInt-1);
-  if (beg.equals("a")) ret += "0";
-  if (beg.equals("b")) ret += "1";
-  if (beg.equals("c")) ret += "2";
-  if (beg.equals("d")) ret += "3";
-  if (beg.equals("e")) ret += "4";
-  if (beg.equals("f")) ret += "5";
-  if (beg.equals("g")) ret += "6";
-  if (beg.equals("h")) ret += "7";
-  return ret;
+  String ans = "";
+  for (int r = 0; r < cb.length; r++){
+  for (int c = 0; c < cb[r].length; c++){
+  if (c == cb[r].length - 1){
+  if (cb[r][c].getPlayer().equals("a")){
+  ans += ANSI_BLUE;
+}
+if (cb[r][c].getPlayer().equals("b")){
+ans += ANSI_RED;
+}
+ans += cb[r][c].toString() + ANSI_RESET + "\n";
+}else{
+if (cb[r][c].getPlayer().equals("a")){
+ans += ANSI_BLUE;
+}
+if (cb[r][c].getPlayer().equals("b")){
+ans += ANSI_RED;
+}
+ans = ans + cb[r][c].toString() + ANSI_RESET + " ";
+}
 }
 
+}
+return ans;
+}
+*/
+public String toString(){
+  String ans = "";
+  for (int r = 0; r < cb.length; r++){
+    for (int c = 0; c < cb[r].length; c++){
+      if (c == cb[r].length - 1){
+        ans = ans + cb[r][c].toString() + "\n" ;
+      }else{
+        ans = ans + cb[r][c].toString() + " ";
+      }
+    }
+  }
+  return ans;
+}
+
+/**
+* Returns a String object in the form of two ints, determining exact location in array.
+*
+* @param location location in array in the form of a letter and number
+*/
+public static String locationtoInt(String location){ //string bc "00" for a1
+String ret = "";
+String beg = location.substring(0,1);
+String end = location.substring(1);
+int endInt = Integer.parseInt(end);
+ret += Integer.toString(endInt-1);
+if (beg.equals("a")) ret += "0";
+if (beg.equals("b")) ret += "1";
+if (beg.equals("c")) ret += "2";
+if (beg.equals("d")) ret += "3";
+if (beg.equals("e")) ret += "4";
+if (beg.equals("f")) ret += "5";
+if (beg.equals("g")) ret += "6";
+if (beg.equals("h")) ret += "7";
+return ret;
+}
+
+/**
+* Returns a String object in the form of a letter and number, determining exact location in array.
+*
+* @param location location in array in the form of two ints
+*/
 public static String inttoLocation(String location){
   String ret = "";
   String beg = location.substring(0,1);
@@ -205,6 +216,13 @@ public void fillInPiecesStart(){
   set(kb, 7, 3);
 }
 
+/**
+* Does specified action of moving chesspieces called by user
+*
+* @param string input taken by Scanner that determines where the user wants to move a chesspiece from and to.
+* @param chb the current instance of chesspieces array
+* @param c the current instance of chessboard
+*/
 public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
   String[] splitted = string.split("\\s+");
   int curl = 0;
@@ -215,9 +233,12 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
   int newlR = 0;
   Chesspieces piece;
 
+  // if user types in "quit" in input, game quits
   if (string.equals("quit")){
     System.exit(0);
   }
+
+  // tries to catch invalid user inputs
   try{
     curl = Integer.parseInt(locationtoInt(splitted[0]));
     curlL = curl/10;
@@ -235,63 +256,76 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
   }
 
   try{
+
+    // user input is invalid
     if (splitted.length != 2){
       System.out.println("<current location> <new location>");
       return false;
     }
+
+    // cannot move other's pieces during a certain user's turn
     if (c.counter%2 != 0 && chb[curlL][curlR].getPlayer().equals("b")){
-	System.out.println("you can't move other peoples pieces cheater");
-	return false;
+      System.out.println("you can't move other peoples pieces cheater");
+      return false;
     }
     if (c.counter%2 == 0 && chb[curlL][curlR].getPlayer().equals("a")){
-	System.out.println("you can't move other peoples pieces cheater");
-	return false;
+      System.out.println("you can't move other peoples pieces cheater");
+      return false;
     }
+
+    // pawns cannot move diagonally unless it is to eat another piece
     if (chb[curlL][curlR].getPlayer().equals("a") &&
-	chb[curlL][curlR].toString().equals("P") &&
-	chb[newlL][newlR].toString().equals(".") &&
-	((newl - curl) == 11 || (newl - curl) == 9)){
-	System.out.println("you can't move a pawn diagonally except to eat");
-	return false;
+    chb[curlL][curlR].toString().equals("P") &&
+    chb[newlL][newlR].toString().equals(".") &&
+    ((newl - curl) == 11 || (newl - curl) == 9)){
+      System.out.println("you can't move a pawn diagonally except to eat");
+      return false;
     }
     if (chb[curlL][curlR].getPlayer().equals("b") &&
-	chb[curlL][curlR].toString().equals("P") &&
-	chb[newlL][newlR].toString().equals(".") &&
-	((newl - curl) == -11 || (newl - curl) == -9)){
-	System.out.println("you can't move a pawn diagonally except to eat");
-	return false;
+    chb[curlL][curlR].toString().equals("P") &&
+    chb[newlL][newlR].toString().equals(".") &&
+    ((newl - curl) == -11 || (newl - curl) == -9)){
+      System.out.println("you can't move a pawn diagonally except to eat");
+      return false;
     }
+
+    //
     if (chb[curlL][curlR].getPlayer().equals("a") &&
-	chb[curlL][curlR].toString().equals("P") &&
-	!chb[newlL][newlR].toString().equals(".") &&
-	((newl - curl) == 1)){
-	System.out.println("you can't have a pawn eat in front.");
-	return false;
+    chb[curlL][curlR].toString().equals("P") &&
+    !chb[newlL][newlR].toString().equals(".") &&
+    ((newl - curl) == 1)){
+      System.out.println("you can't have a pawn eat in front.");
+      return false;
     }
     if (chb[curlL][curlR].getPlayer().equals("b") &&
-	chb[curlL][curlR].toString().equals("P") &&
-	!chb[newlL][newlR].toString().equals(".") &&
-	((newl - curl) == -1)){
-	System.out.println("you can't have a pawn eat in front.");
-	return false;
+    chb[curlL][curlR].toString().equals("P") &&
+    !chb[newlL][newlR].toString().equals(".") &&
+    ((newl - curl) == -1)){
+      System.out.println("you can't have a pawn eat in front.");
+      return false;
     }
+
+    // if user eats the other's king, user wins
     if (chb[newlL][newlR].toString().equals("K") &&
-        !(chb[curlL][curlR].getPlayer().equals(chb[newlL][newlR].getPlayer()))){
+    !(chb[curlL][curlR].getPlayer().equals(chb[newlL][newlR].getPlayer()))){
       c.KingAlive = false;
       System.out.println("YOU WIN!");
       return true;
     }
 
+    // if <current location> does not have a chesspiece on it
     if (chb[curlL][curlR].toString().equals(".")){
       System.out.println("Nuthin' here to move.");
       return false;
     }
 
+    // if user's <new location> leads to its own piece
     if(chb[curlL][curlR].getPlayer().equals(chb[newlL][newlR].getPlayer())){
       System.out.println("Don't eat yourself");
       return false;
     }
 
+    // if user tries to move a piece (that is not a knight) when another chesspiece is in front
     if (!(chb[curlL][curlR].toString().equals("N"))){
       if (chb[curlL][curlR].getPlayer().equals("a")){
         if (!(chb[(curlL)+1][curlR].toString().equals("."))){
@@ -306,6 +340,7 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
       }
     }
 
+    // if move is not valid via chess rules
     if (!(chb[curlL][curlR].isValid(splitted[1]))){
       System.out.println("Invalid move bro.");
       return false;
@@ -314,6 +349,8 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
     chb[newlL][newlR] = chb[curlL][curlR];
     chb[curlL][curlR] = new Blank(curlL, curlR);
     return true;
+
+    // more invalid user inputs
   }catch (ArrayIndexOutOfBoundsException e){
     System.out.println("Out the bounds of chessboard.");
     System.out.println("<current location> <new location>");

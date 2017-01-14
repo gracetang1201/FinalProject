@@ -53,6 +53,7 @@ public class Chessboard{
     }
     fillInPiecesStart();
   }
+    /*
   public String toString(){
     String ans = "";
     for (int r = 0; r < cb.length; r++){
@@ -79,7 +80,20 @@ public class Chessboard{
     }
     return ans;
   }
-
+    */
+    public String toString(){
+	String ans = "";
+	for (int r = 0; r < cb.length; r++){
+	    for (int c = 0; c < cb[r].length; c++){
+		if (c == cb[r].length - 1){
+		    ans = ans + cb[r][c].toString() + "\n" ;
+		}else{
+		    ans = ans + cb[r][c].toString() + " ";
+		}
+	    }
+	}
+	return ans;
+    }
   public static String locationtoInt(String location){ //string bc "00" for a1
   String ret = "";
   String beg = location.substring(0,1);
@@ -223,6 +237,14 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
     if (splitted.length != 2){
       System.out.println("<current location> <new location>");
       return false;
+    }
+    if (c.counter%2 != 0 && chb[curlL][curlR].getPlayer().equals("b")){
+	System.out.println("you can't move other peoples pieces cheater");
+	return false;
+    }
+    if (c.counter%2 == 0 && chb[curlL][curlR].getPlayer().equals("a")){
+	System.out.println("you can't move other peoples pieces cheater");
+	return false;
     }
     if (chb[curlL][curlR].getPlayer().equals("a") &&
 	chb[curlL][curlR].toString().equals("P") &&

@@ -28,7 +28,7 @@ public class Rook extends Chesspieces{
     int newFirst = newloc%10;
     int curTenth = Integer.parseInt(currentLocation.substring(0,1));
     int curFirst = Integer.parseInt(currentLocation.substring(1));
-    if (Math.abs(newloc-curTenth*10+curFirst)%10 == 0||
+    if (Math.abs(newloc-(curTenth*10+curFirst))%10 == 0||
 	newTenth == curTenth){
       return true;
     }else{

@@ -1,14 +1,21 @@
 public class Pawn extends Chesspieces{
   private char player;
   private String currentLocation;
+    private boolean firstMove;
   public Pawn(int x, int y, char p){
     currentLocation = Integer.toString(y) + Integer.toString(x);
     player = p;
+    firstMove = true;
   }
   public String toString(){
     return "P";
   }
-
+    public boolean getFirst(){
+	return firstMove;
+    }
+    public void set setFirst(){
+	firstMove = false;
+    }
   public String getPlayer(){
     return Character.toString(player);
   }

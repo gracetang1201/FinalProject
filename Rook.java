@@ -23,12 +23,13 @@ public class Rook extends Chesspieces{
   }
   public boolean isValid(String newlocation){
     int newloc = Integer.parseInt(super.locationtoInt(newlocation));
-    // String curloc = Integer.toString(currentLocation);
+    //int curloc = Integer.toString(currentLocation);
     int newTenth = newloc/10;
     int newFirst = newloc%10;
     int curTenth = Integer.parseInt(currentLocation.substring(0,1));
     int curFirst = Integer.parseInt(currentLocation.substring(1));
-    if (newTenth==curTenth ^ newFirst==curFirst){
+    if (Math.abs(newloc-curTenth*10+curFirst)%10 == 0||
+	newTenth == curTenth){
       return true;
     }else{
       return false;

@@ -1,0 +1,10 @@
+public class Pawn extends Chesspieces{
+    public void move(String newlocation){
+    }
+    public boolean isValid(String newlocation){
+	if (currentLocation + 10 == locationtoInt(newlocation)&&
+	    cb[){
+	    
+	}
+    }
+}

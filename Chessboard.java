@@ -42,8 +42,6 @@ public class Chessboard{
   }
 
   public Chessboard(){
-    firstMoveA = true;
-    firstMoveB = true;
     KingAlive = true;
     counter = 1;
     cb = new Chesspieces[8][8];
@@ -289,7 +287,6 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
       return false;
     }
 
-    //
     if (chb[curlL][curlR].getPlayer().equals("a") &&
     chb[curlL][curlR].toString().equals("P") &&
     !chb[newlL][newlR].toString().equals(".") &&

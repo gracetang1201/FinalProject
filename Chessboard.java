@@ -43,7 +43,6 @@ public class Chessboard{
 
   public Chessboard(){
     KingAlive = true;
-    promotion = false;
     counter = 1;
     cb = new Chesspieces[8][8];
     for (int c = 0; c < 8; c++){

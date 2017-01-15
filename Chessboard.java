@@ -52,7 +52,7 @@ public class Chessboard{
     }
     fillInPiecesStart();
   }
-  /*
+
   public String toString(){
   String ans = "";
   for (int r = 0; r < cb.length; r++){
@@ -79,20 +79,20 @@ ans = ans + cb[r][c].toString() + ANSI_RESET + " ";
 }
 return ans;
 }
-*/
-public String toString(){
-  String ans = "";
-  for (int r = 0; r < cb.length; r++){
-    for (int c = 0; c < cb[r].length; c++){
-      if (c == cb[r].length - 1){
-        ans = ans + cb[r][c].toString() + "\n" ;
-      }else{
-        ans = ans + cb[r][c].toString() + " ";
-      }
-    }
-  }
-  return ans;
-}
+
+// public String toString(){
+//   String ans = "";
+//   for (int r = 0; r < cb.length; r++){
+//     for (int c = 0; c < cb[r].length; c++){
+//       if (c == cb[r].length - 1){
+//         ans = ans + cb[r][c].toString() + "\n" ;
+//       }else{
+//         ans = ans + cb[r][c].toString() + " ";
+//       }
+//     }
+//   }
+//   return ans;
+// }
 
 /**
 * Returns a String object in the form of two ints, determining exact location in array.

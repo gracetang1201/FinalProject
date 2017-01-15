@@ -1,10 +1,12 @@
 public class Pawn extends Chesspieces{
     private char player;
     private String currentLocation;
+    private boolean firstMove;
 
     public Pawn(int x, int y, char p){
 	currentLocation = Integer.toString(y) + Integer.toString(x);
 	player = p;
+  firstMove = true;
 
     }
     public String toString(){
@@ -17,6 +19,7 @@ public class Pawn extends Chesspieces{
     public boolean  move(String newlocation){
 	if(isValid(newlocation)){
 	    currentLocation = locationtoInt(newlocation);
+      firstMove = false;
 	    return true;
 	}else{
 	    return false;
@@ -34,11 +37,11 @@ public class Pawn extends Chesspieces{
 		return true;
 	    }
 	}
-	if ((Character.toString(player)).equals("a")){
+	if ((Character.toString(player)).equals("a") && firstMove == true){
 	    if (newloc-curren == 20){
 		return true;
 	    }
-	}else{
+	}else if (firstMove == true){
 	    if (newloc-curren == -20){
 		return true;
 	    }
@@ -50,9 +53,9 @@ public class Pawn extends Chesspieces{
 	    return true;
 	}
 	else{
-	    System.out.println(currentLocation);
-	    System.out.println(newlocation);
-	    System.out.println(super.locationtoInt(newlocation));
+	    // System.out.println(currentLocation);
+	    // System.out.println(newlocation);
+	    // System.out.println(super.locationtoInt(newlocation));
 	    System.out.println("hi");
 	    return false;
 	}

@@ -13,11 +13,14 @@ public class Chessboard{
   public static final String ANSI_BLUE = "\u001B[34m";
   public static final String ANSI_RED = "\u001B[31m";
   public static final String ANSI_RESET = "\u001B[0m";
+  public static final String ANSI_CLS = "\u001b[2J";
 
 
   public static void main(String[]args){
     Scanner user_input = new Scanner(System.in);
     Chessboard c = new Chessboard();
+    // System.out.print(ANSI_CLS);
+    // System.out.flush();
     System.out.println(c); // prints chessboard
     while (c.KingAlive){
       while (c.counter%2!=0){
@@ -54,45 +57,51 @@ public class Chessboard{
   }
 
   public String toString(){
-  String ans = "";
-  for (int r = 0; r < cb.length; r++){
-  for (int c = 0; c < cb[r].length; c++){
-  if (c == cb[r].length - 1){
-  if (cb[r][c].getPlayer().equals("a")){
-  ans += ANSI_BLUE;
-}
-if (cb[r][c].getPlayer().equals("b")){
-ans += ANSI_RED;
-}
-ans += cb[r][c].toString() + ANSI_RESET + "\n";
-}else{
-if (cb[r][c].getPlayer().equals("a")){
-ans += ANSI_BLUE;
-}
-if (cb[r][c].getPlayer().equals("b")){
-ans += ANSI_RED;
-}
-ans = ans + cb[r][c].toString() + ANSI_RESET + " ";
-}
-}
+    int counter = 2;
+    String ans = "\n   a b c d e f g h\n \n1  ";
+    for (int r = 0; r < cb.length; r++){
+      for (int c = 0; c < cb[r].length; c++){
+        if (c == cb[r].length - 1){
+          if (cb[r][c].getPlayer().equals("a")){
+            ans += ANSI_BLUE;
+          }
+          if (cb[r][c].getPlayer().equals("b")){
+            ans += ANSI_RED;
+          }
+          if (counter < 9){
+            ans += cb[r][c].toString() + ANSI_RESET + "\n" + Integer.toString(counter) + "  ";
+            counter += 1;
+          } else{
+            ans += cb[r][c].toString() + ANSI_RESET + "\n";
+          }
+        }else{
+          if (cb[r][c].getPlayer().equals("a")){
+            ans += ANSI_BLUE;
+          }
+          if (cb[r][c].getPlayer().equals("b")){
+            ans += ANSI_RED;
+          }
+          ans = ans + cb[r][c].toString() + ANSI_RESET + " ";
+        }
+      }
 
-}
-return ans;
-}
+    }
+    return ans;
+  }
 
-// public String toString(){
-//   String ans = "";
-//   for (int r = 0; r < cb.length; r++){
-//     for (int c = 0; c < cb[r].length; c++){
-//       if (c == cb[r].length - 1){
-//         ans = ans + cb[r][c].toString() + "\n" ;
-//       }else{
-//         ans = ans + cb[r][c].toString() + " ";
-//       }
-//     }
-//   }
-//   return ans;
-// }
+  // public String toString(){
+  //   String ans = "";
+  //   for (int r = 0; r < cb.length; r++){
+  //     for (int c = 0; c < cb[r].length; c++){
+  //       if (c == cb[r].length - 1){
+  //         ans = ans + cb[r][c].toString() + "\n" ;
+  //       }else{
+  //         ans = ans + cb[r][c].toString() + " ";
+  //       }
+  //     }
+  //   }
+  //   return ans;
+  // }
 
 /**
 * Returns a String object in the form of two ints, determining exact location in array.
@@ -100,20 +109,20 @@ return ans;
 * @param location location in array in the form of a letter and number
 */
 public static String locationtoInt(String location){ //string bc "00" for a1
-String ret = "";
-String beg = location.substring(0,1);
-String end = location.substring(1);
-int endInt = Integer.parseInt(end);
-ret += Integer.toString(endInt-1);
-if (beg.equals("a")) ret += "0";
-if (beg.equals("b")) ret += "1";
-if (beg.equals("c")) ret += "2";
-if (beg.equals("d")) ret += "3";
-if (beg.equals("e")) ret += "4";
-if (beg.equals("f")) ret += "5";
-if (beg.equals("g")) ret += "6";
-if (beg.equals("h")) ret += "7";
-return ret;
+  String ret = "";
+  String beg = location.substring(0,1);
+  String end = location.substring(1);
+  int endInt = Integer.parseInt(end);
+  ret += Integer.toString(endInt-1);
+  if (beg.equals("a")) ret += "0";
+  if (beg.equals("b")) ret += "1";
+  if (beg.equals("c")) ret += "2";
+  if (beg.equals("d")) ret += "3";
+  if (beg.equals("e")) ret += "4";
+  if (beg.equals("f")) ret += "5";
+  if (beg.equals("g")) ret += "6";
+  if (beg.equals("h")) ret += "7";
+  return ret;
 }
 
 /**
@@ -325,73 +334,73 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
     // if user tries to move a piece (that is not a knight) when another chesspiece is in front
     /*
     if (!(chb[curlL][curlR].toString().equals("N"))){
-      if (chb[curlL][curlR].getPlayer().equals("a")){
-        if (!(chb[(curlL)+1][curlR].toString().equals("."))){
-          System.out.println("Ya can't skip people.");
-          return false;
-        }
-      }else{
-        if (!(chb[curlL-1][curlR].toString().equals("."))){
-          System.out.println("Ya can't skip people.");
-          return false;
-        }
-      }
-    }
-    */
-    // if move is not valid via chess rules
-    if (!(chb[curlL][curlR].isValid(splitted[1]))){
-      System.out.println("Invalid move bro.");
-      return false;
-    }
-
-    // promo case should be last bc it passes all the false tests
-    if (chb[curlL][curlR].toString().equals("P")){
-      if (newlL == 0 || newlL == 7){
-        Scanner input = new Scanner(System.in);
-        String change = "";
-        char playerType = chb[curlL][curlR].getPlayer().charAt(0);
-        System.out.println();
-        System.out.println("What do you want your pawn to be promoted to? (Q, N, R, or B)");
-        System.out.print(">>> ");
-        change = input.next();
-        boolean done = false;
-        while (!(done)){
-          if (change.equals("Q")){
-            chb[newlL][newlR] = new Queen(newlL, newlR, playerType);
-            done = true;
-          } else if (change.equals("N")){
-            chb[newlL][newlR] = new Knight(newlL, newlR, playerType);
-            done = true;
-          } else if (change.equals("R")){
-            chb[newlL][newlR] = new Rook(newlL, newlR, playerType);
-            done = true;
-          } else if (change.equals("B")){
-            chb[newlL][newlR] = new Bishop(newlL, newlR, playerType);
-            done = true;
-          } else {
-            System.out.println("Invalid input. Q, N, R, or B");
-            System.out.print(">>> ");
-          }
-        }
-      } else {
-        chb[curlL][curlR].move(splitted[1]);
-        chb[newlL][newlR] = chb[curlL][curlR];
-      }
-    } else {
-      chb[curlL][curlR].move(splitted[1]);
-      chb[newlL][newlR] = chb[curlL][curlR];
-    }
-
-    chb[curlL][curlR] = new Blank(curlL, curlR);
-
-    return true;
-
-    // more invalid user inputs
-  }catch (ArrayIndexOutOfBoundsException e){
-    System.out.println("Out the bounds of chessboard.");
-    System.out.println("<current location> <new location>");
+    if (chb[curlL][curlR].getPlayer().equals("a")){
+    if (!(chb[(curlL)+1][curlR].toString().equals("."))){
+    System.out.println("Ya can't skip people.");
     return false;
   }
+}else{
+if (!(chb[curlL-1][curlR].toString().equals("."))){
+System.out.println("Ya can't skip people.");
+return false;
+}
+}
+}
+*/
+// if move is not valid via chess rules
+if (!(chb[curlL][curlR].isValid(splitted[1]))){
+  System.out.println("Invalid move bro.");
+  return false;
+}
+
+// promo case should be last bc it passes all the false tests
+if (chb[curlL][curlR].toString().equals("P")){
+  if (newlL == 0 || newlL == 7){
+    Scanner input = new Scanner(System.in);
+    String change = "";
+    char playerType = chb[curlL][curlR].getPlayer().charAt(0);
+    System.out.println();
+    System.out.println("What do you want your pawn to be promoted to? (Q, N, R, or B)");
+    System.out.print(">>> ");
+    change = input.next();
+    boolean done = false;
+    while (!(done)){
+      if (change.equals("Q")){
+        chb[newlL][newlR] = new Queen(newlL, newlR, playerType);
+        done = true;
+      } else if (change.equals("N")){
+        chb[newlL][newlR] = new Knight(newlL, newlR, playerType);
+        done = true;
+      } else if (change.equals("R")){
+        chb[newlL][newlR] = new Rook(newlL, newlR, playerType);
+        done = true;
+      } else if (change.equals("B")){
+        chb[newlL][newlR] = new Bishop(newlL, newlR, playerType);
+        done = true;
+      } else {
+        System.out.println("Invalid input. Q, N, R, or B");
+        System.out.print(">>> ");
+      }
+    }
+  } else {
+    chb[curlL][curlR].move(splitted[1]);
+    chb[newlL][newlR] = chb[curlL][curlR];
+  }
+} else {
+  chb[curlL][curlR].move(splitted[1]);
+  chb[newlL][newlR] = chb[curlL][curlR];
+}
+
+chb[curlL][curlR] = new Blank(curlL, curlR);
+
+return true;
+
+// more invalid user inputs
+}catch (ArrayIndexOutOfBoundsException e){
+  System.out.println("Out the bounds of chessboard.");
+  System.out.println("<current location> <new location>");
+  return false;
+}
 }
 
 }

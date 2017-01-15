@@ -43,6 +43,7 @@ public class Chessboard{
 
   public Chessboard(){
     KingAlive = true;
+    promotion = false;
     counter = 1;
     cb = new Chesspieces[8][8];
     for (int c = 0; c < 8; c++){
@@ -343,9 +344,47 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
       System.out.println("Invalid move bro.");
       return false;
     }
-    chb[curlL][curlR].move(splitted[1]);
-    chb[newlL][newlR] = chb[curlL][curlR];
+
+    // promo case should be last bc it passes all the false tests
+    if (chb[curlL][curlR].toString().equals("P")){
+      if (newlL == 0 || newlL == 7){
+        Scanner input = new Scanner(System.in);
+        String change = "";
+        char playerType = chb[curlL][curlR].getPlayer().charAt(0);
+        System.out.println();
+        System.out.println("What do you want your pawn to be promoted to? (Q, N, R, or B)");
+        System.out.print(">>> ");
+        change = input.next();
+        boolean done = false;
+        while (!(done)){
+          if (change.equals("Q")){
+            chb[newlL][newlR] = new Queen(newlL, newlR, playerType);
+            done = true;
+          } else if (change.equals("N")){
+            chb[newlL][newlR] = new Knight(newlL, newlR, playerType);
+            done = true;
+          } else if (change.equals("R")){
+            chb[newlL][newlR] = new Rook(newlL, newlR, playerType);
+            done = true;
+          } else if (change.equals("B")){
+            chb[newlL][newlR] = new Bishop(newlL, newlR, playerType);
+            done = true;
+          } else {
+            System.out.println("Invalid input. Q, N, R, or B");
+            System.out.print(">>> ");
+          }
+        }
+      } else {
+        chb[curlL][curlR].move(splitted[1]);
+        chb[newlL][newlR] = chb[curlL][curlR];
+      }
+    } else {
+      chb[curlL][curlR].move(splitted[1]);
+      chb[newlL][newlR] = chb[curlL][curlR];
+    }
+
     chb[curlL][curlR] = new Blank(curlL, curlR);
+
     return true;
 
     // more invalid user inputs

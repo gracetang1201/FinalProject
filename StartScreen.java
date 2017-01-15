@@ -77,7 +77,7 @@ public class StartScreen{
                           "Half of your starting team is pawns, so it's very important to understand how to use these little guys, even though they are not very strong. Pawns are unusual because they move in one way, but capture in a different way. When they move, they just go forward, but when they capture they go diagonally. Pawns can only move forward one square at a time, except for their very first move where they can move forward two squares or one. Pawns can only capture one square diagonally in front of them. They can never move or capture backwards." + "\n" + "\n" + "Because they move and capture differently, the pawn is the only piece that can get blocked by enemy pieces: if there is another piece directly in front of a pawn he cannot move past or capture that piece."
                         };
     try{
-      Thread.sleep(3000);
+      Thread.sleep(500);
       System.out.print(ANSI_CLS);
       System.out.flush();
     } catch(InterruptedException e){
@@ -88,26 +88,45 @@ public class StartScreen{
 
     int i = 0;
     while (i < instructs.length){
-      System.out.print(ANSI_CLS);
-      System.out.flush();
-      System.out.println(instructs[i]);
-      System.out.println(instructs[i+1]);
-      System.out.println();
-      System.out.println("type" + ANSI_CYAN + " next " + ANSI_RESET + "to continue");
-      System.out.println("type" + ANSI_CYAN + " menu " + ANSI_RESET + "to return to previous menu");
-      System.out.print(">>> ");
-      menInput = menuIn.next();
-      if (menInput.equals("menu")){
-        i = 20;
-        menu();
-      } else if (menInput.equals("next")){
-        i += 2;
-      } else{
-        System.out.println("Please read instructions!! Invalid input");
+        System.out.print(ANSI_CLS);
+        System.out.flush();
+        System.out.println(instructs[i]);
+        System.out.println(instructs[i+1]);
+        System.out.println();
+        if (i != 0){
+          System.out.println("type" + ANSI_CYAN + " back " + ANSI_RESET + "to go back to previous");
+        }
+        if (i < 10){
+          System.out.println("type" + ANSI_CYAN + " next " + ANSI_RESET + "to continue");
+        }
+        System.out.println("type" + ANSI_CYAN + " menu " + ANSI_RESET + "to return to previous menu");
         System.out.print(">>> ");
         menInput = menuIn.next();
-      }
-    }
+        if (menInput.equals("menu")){
+          i = 20;
+          menu();
+        } else if (menInput.equals("next")){
+          if (i >= 10){
+            System.out.println("No more");
+            System.out.print(">>> ");
+            menInput = menuIn.next();
+          } else{
+            i += 2;
+          }
+        } else if (menInput.equals("back")){
+          if (i == 0){
+            System.out.println("Nothing to go back to");
+            System.out.print(">>> ");
+            menInput = menuIn.next();
+          } else{
+            i -= 2;
+          }
+        }else{
+          System.out.println("Please read instructions!! Invalid input0");
+          System.out.print(">>> ");
+          menInput = menuIn.next();
+        }
+  }
 
   }
 

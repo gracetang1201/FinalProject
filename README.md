@@ -5,7 +5,14 @@ Laura Goon &amp; Grace Tang.
 It's just chess. :clap:
 
 ### Working Features
-Winning, moving pieces, eating other pieces.
+- winning
+- moving other pieces
+- eating other pieces
+- timed matches
+- pawn gets promoted when reaches other side of board
+- ability to play multiple rounds in one session and keep track of wins/lossses/total rounds played
+- instructions screen
+
 ### Unresolved Bigs
 
 ### Compiling and Running:

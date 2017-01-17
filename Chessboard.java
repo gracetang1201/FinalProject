@@ -26,20 +26,36 @@ public class Chessboard{
       while (c.counter%2!=0){
         String wturn;
         System.out.println("Player 1 turn: ");
+	long wbegin = 0;
+	wbegin = System.currentTimeMillis();
         wturn = user_input.nextLine();
+	long wend = System.currentTimeMillis();
+	if (wend - wbegin >=60000){
+	    System.out.println("you spent too much time loser");
+	    c.counter++;
+	}else{
         if (doAction(wturn,c.cb,c)){
           c.counter += 1;
           System.out.println(c);
         }
+	}
       }
       while (c.counter%2==0){
         String bturn;
         System.out.println("Player 2 turn: ");
+	long begin = 0;
+	begin = System.currentTimeMillis();
         bturn = user_input.nextLine();
+	long end = System.currentTimeMillis();
+	if (end - begin >= 60000){
+	    System.out.println("you spent too much time loser");
+	    c.counter++;
+	}else{
         if (doAction(bturn,c.cb,c)){
           c.counter += 1;
           System.out.println(c);
         }
+	}
       }
     }
   }

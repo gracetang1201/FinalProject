@@ -67,6 +67,9 @@ public class Chessboard{
 
   public void anotherRound(Chessboard c){
     Scanner roundInp = new Scanner(System.in);
+    System.out.println("GAMES PLAYED: " + Integer.toString(c.gameNumber));
+    System.out.println("SCORE FOR PLAYER A: " + Integer.toString(c.scoreA));
+    System.out.println("SCORE FOR PLAYER B: " + Integer.toString(c.scoreB));
     System.out.println("Do you want to play another round? YES or NO");
     System.out.print(">>> ");
     boolean notAnswered = true;
@@ -406,7 +409,7 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
       } else {
         c.scoreA += 1;
       }
-      c.gameNumber = 1;
+      c.gameNumber += 1;
       return true;
     }
 

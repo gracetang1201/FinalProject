@@ -9,6 +9,7 @@ public class Chessboard{
   private boolean KingAlive;
   private int counter;
   private Chesspieces[][]cb;
+    private boolean timeroption;
 
   public static final String ANSI_BLUE = "\u001B[34m";
   public static final String ANSI_RED = "\u001B[31m";

@@ -1,3 +1,4 @@
+import java.io.Console;
 import java.util.Scanner;
 public class StartScreen{
 
@@ -131,6 +132,7 @@ public class StartScreen{
   }
 
     public static void followCmd(String input){
+	Console c = System.console();
 	if (input.equals("menu")){ // !!!!!!! AADDDDDDDDDD THIS TO MENU BROOO
 	    menu();
 	}
@@ -138,7 +140,12 @@ public class StartScreen{
 	    instruct();
 	}
 	if (input.equals("start")){
-	    Chessboard.main(new String[0]);
+	    String inp = c.readLine("Would you like to have a 1 minute time cap on each move?");
+	    if (inp.equals("Yes") || inp.equals("yes")){
+		Chessboard.main(new String[0]);
+	    }else{
+		Chessboard2.main(new String[0]);
+	    }
 	}
 	if (input.equals("quit")){
 	    System.exit(0);

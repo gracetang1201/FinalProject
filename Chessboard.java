@@ -9,8 +9,9 @@ public class Chessboard{
   private boolean KingAlive;
   private int counter;
   private Chesspieces[][]cb;
-  private int score1;
-  private int score2;
+  private int gameNumber;
+  private int scoreA;
+  private int scoreB;
   private boolean timeroption;
 
   public static final String ANSI_BLUE = "\u001B[34m";
@@ -29,43 +30,112 @@ public class Chessboard{
       while (c.counter%2!=0){
         String wturn;
         System.out.println("Player 1 turn: ");
-	long wbegin = 0;
-	wbegin = System.currentTimeMillis();
+        long wbegin = 0;
+        wbegin = System.currentTimeMillis();
         wturn = user_input.nextLine();
-	long wend = System.currentTimeMillis();
-	if (wend - wbegin >=60000){
-	    System.out.println("you spent too much time loser");
-	    c.counter++;
-	}else{
-        if (doAction(wturn,c.cb,c)){
-          c.counter += 1;
-          System.out.println(c);
+        long wend = System.currentTimeMillis();
+        if (wend - wbegin >=60000){
+          System.out.println("you spent too much time loser");
+          c.counter++;
+        }else{
+          if (doAction(wturn,c.cb,c)){
+            c.counter += 1;
+            System.out.println(c);
+          }
         }
-	}
       }
       while (c.counter%2==0){
         String bturn;
         System.out.println("Player 2 turn: ");
-	long begin = 0;
-	begin = System.currentTimeMillis();
+        long begin = 0;
+        begin = System.currentTimeMillis();
         bturn = user_input.nextLine();
-	long end = System.currentTimeMillis();
-	if (end - begin >= 60000){
-	    System.out.println("you spent too much time loser");
-	    c.counter++;
-	}else{
-        if (doAction(bturn,c.cb,c)){
-          c.counter += 1;
-          System.out.println(c);
+        long end = System.currentTimeMillis();
+        if (end - begin >= 60000){
+          System.out.println("you spent too much time loser");
+          c.counter++;
+        }else{
+          if (doAction(bturn,c.cb,c)){
+            c.counter += 1;
+            System.out.println(c);
+          }
         }
-	}
       }
     }
+    c.anotherRound(c);
+  }
+
+  public void anotherRound(Chessboard c){
+    Scanner roundInp = new Scanner(System.in);
+    System.out.println("Do you want to play another round? YES or NO");
+    System.out.print(">>> ");
+    boolean notAnswered = true;
+      while (notAnswered){
+        String nextInp = roundInp.next();
+        if (nextInp.equals("NO")){
+          System.out.println("Thanks for playing!");
+          notAnswered = false;
+          System.exit(0);
+        } else if (nextInp.equals("YES")){
+          notAnswered = false;
+          c.fillInPiecesStart();
+          c.gameAgain(c);
+        } else {
+          System.out.println("Invalid input. YES or NO");
+        }
+      }
+  }
+
+  public void gameAgain(Chessboard c){
+    Scanner user_input = new Scanner(System.in);
+    c.KingAlive = true;
+    c.counter = 1;
+    System.out.println(c); // prints chessboard
+    while (c.KingAlive){
+      while (c.counter%2!=0){
+        String wturn;
+        System.out.println("Player 1 turn: ");
+        long wbegin = 0;
+        wbegin = System.currentTimeMillis();
+        wturn = user_input.nextLine();
+        long wend = System.currentTimeMillis();
+        if (wend - wbegin >=60000){
+          System.out.println("you spent too much time loser");
+          c.counter++;
+        }else{
+          if (doAction(wturn,c.cb,c)){
+            c.counter += 1;
+            System.out.println(c);
+          }
+        }
+      }
+      while (c.counter%2==0){
+        String bturn;
+        System.out.println("Player 2 turn: ");
+        long begin = 0;
+        begin = System.currentTimeMillis();
+        bturn = user_input.nextLine();
+        long end = System.currentTimeMillis();
+        if (end - begin >= 60000){
+          System.out.println("you spent too much time loser");
+          c.counter++;
+        }else{
+          if (doAction(bturn,c.cb,c)){
+            c.counter += 1;
+            System.out.println(c);
+          }
+        }
+      }
+    }
+    c.anotherRound(c);
   }
 
   public Chessboard(){
     KingAlive = true;
     counter = 1;
+    gameNumber = 0;
+    scoreA = 0;
+    scoreB = 0;
     cb = new Chesspieces[8][8];
     for (int c = 0; c < 8; c++){
       for (int r = 0; r < 8; r++){
@@ -108,26 +178,12 @@ public class Chessboard{
     return ans;
   }
 
-  // public String toString(){
-  //   String ans = "";
-  //   for (int r = 0; r < cb.length; r++){
-  //     for (int c = 0; c < cb[r].length; c++){
-  //       if (c == cb[r].length - 1){
-  //         ans = ans + cb[r][c].toString() + "\n" ;
-  //       }else{
-  //         ans = ans + cb[r][c].toString() + " ";
-  //       }
-  //     }
-  //   }
-  //   return ans;
-  // }
-
-/**
-* Returns a String object in the form of two ints, determining exact location in array.
-*
-* @param location location in array in the form of a letter and number
-*/
-public static String locationtoInt(String location){ //string bc "00" for a1
+  /**
+  * Returns a String object in the form of two ints, determining exact location in array.
+  *
+  * @param location location in array in the form of a letter and number
+  */
+  public static String locationtoInt(String location){ //string bc "00" for a1
   String ret = "";
   String beg = location.substring(0,1);
   String end = location.substring(1);
@@ -335,6 +391,12 @@ public static boolean doAction(String string,Chesspieces[][] chb, Chessboard c){
     !(chb[curlL][curlR].getPlayer().equals(chb[newlL][newlR].getPlayer()))){
       c.KingAlive = false;
       System.out.println("YOU WIN!");
+      if (chb[newlL][newlR].getPlayer().equals("a")){
+        c.scoreB += 1;
+      } else {
+        c.scoreA += 1;
+      }
+      c.gameNumber = 1;
       return true;
     }
 

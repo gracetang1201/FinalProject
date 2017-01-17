@@ -9,6 +9,8 @@ public class Chessboard{
   private boolean KingAlive;
   private int counter;
   private Chesspieces[][]cb;
+  private int score1;
+  private int score2;
 
   public static final String ANSI_BLUE = "\u001B[34m";
   public static final String ANSI_RED = "\u001B[31m";

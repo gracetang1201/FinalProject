@@ -242,65 +242,65 @@ public void fillInPiecesStart(){
     }
   }
   for (int insertPawn = 0; insertPawn < 8; insertPawn++){
-    Pawn wp1 = new Pawn(insertPawn, 1, 'b'); //// SWITCH PLAYER SBACK
+    Pawn wp1 = new Pawn(insertPawn, 1, 'a');
     cb[1][insertPawn] = wp1;
   }
   //Pawns for PlayerB
   for (int insertPawn = 0; insertPawn < 8; insertPawn++){
-    Pawn wp1 = new Pawn(insertPawn, 6, 'a');
+    Pawn wp1 = new Pawn(insertPawn, 6, 'b');
     //cb[1][insertPawn] = wp1;
     set(wp1, 6, insertPawn);
   }
-  // //Rooks for PlayerA
-  // Rook rka = new Rook(0, 0, 'a');
-  // //cb[0][0] = rka;
-  // set(rka, 0, 0);
-  // Rook rka1 = new Rook(0, 7, 'a');
-  // //cb[0][7] = rka1;
-  // set(rka1, 0, 7);
-  // //Rooks for PlayerB
-  // Rook rkb = new Rook (7, 0, 'b');
-  // //cb[7][0] = rkb;
-  // set(rkb, 7, 0);
-  // Rook rkb1 = new Rook(7, 7, 'b');
-  // //cb[7][7] = rkb1;
-  // set(rkb1, 7, 7);
-  // //Knight for PlayerA
-  // Knight kna = new Knight(0, 1, 'a');
-  // //cb[0][1] = kna;
-  // set(kna, 0, 1);
-  // Knight kna1 = new Knight(0, 6, 'a');
-  // //cb[0][6] = kna1;
-  // set(kna1, 0, 6);
-  // //Knights for PlayerB
-  // Knight knb = new Knight(7, 1, 'b');
-  // //cb[7][1] = knb;
-  // set(knb, 7, 1);
-  // Knight knb1 = new Knight(7, 6, 'b');
-  // //cb[7][6] = knb1;
-  // set(knb1, 7, 6);
-  // //Bishops for PlayerA
-  // Bishop bia = new Bishop(0, 2, 'a');
-  // //cb[0][2] = bia;
-  // set(bia, 0, 2);
-  // Bishop bia1 = new Bishop(0, 5, 'a');
-  // //cb[0][5] = bia1;
-  // set(bia1, 0, 5);
-  // //Bishops for PlayerB
-  // Bishop bib = new Bishop(7, 5, 'b');
-  // //cb[7][5] = bib;
-  // set(bib, 7, 5);
-  // Bishop bib1 = new Bishop(7, 2, 'b');
-  // //cb[7][2] = bib1;
-  // set(bib1, 7, 2);
-  // //Queen for PlayerA
-  // Queen qa = new Queen(0, 3, 'a');
-  // //cb[0][3] = qa;
-  // set(qa, 0, 3);
-  // //Queen for PlayerB
-  // Queen qb = new Queen(7, 4, 'b');
-  // //cb[7][4] = qb;
-  // set(qb, 7, 4);
+  //Rooks for PlayerA
+  Rook rka = new Rook(0, 0, 'a');
+  //cb[0][0] = rka;
+  set(rka, 0, 0);
+  Rook rka1 = new Rook(0, 7, 'a');
+  //cb[0][7] = rka1;
+  set(rka1, 0, 7);
+  //Rooks for PlayerB
+  Rook rkb = new Rook (7, 0, 'b');
+  //cb[7][0] = rkb;
+  set(rkb, 7, 0);
+  Rook rkb1 = new Rook(7, 7, 'b');
+  //cb[7][7] = rkb1;
+  set(rkb1, 7, 7);
+  //Knight for PlayerA
+  Knight kna = new Knight(0, 1, 'a');
+  //cb[0][1] = kna;
+  set(kna, 0, 1);
+  Knight kna1 = new Knight(0, 6, 'a');
+  //cb[0][6] = kna1;
+  set(kna1, 0, 6);
+  //Knights for PlayerB
+  Knight knb = new Knight(7, 1, 'b');
+  //cb[7][1] = knb;
+  set(knb, 7, 1);
+  Knight knb1 = new Knight(7, 6, 'b');
+  //cb[7][6] = knb1;
+  set(knb1, 7, 6);
+  //Bishops for PlayerA
+  Bishop bia = new Bishop(0, 2, 'a');
+  //cb[0][2] = bia;
+  set(bia, 0, 2);
+  Bishop bia1 = new Bishop(0, 5, 'a');
+  //cb[0][5] = bia1;
+  set(bia1, 0, 5);
+  //Bishops for PlayerB
+  Bishop bib = new Bishop(7, 5, 'b');
+  //cb[7][5] = bib;
+  set(bib, 7, 5);
+  Bishop bib1 = new Bishop(7, 2, 'b');
+  //cb[7][2] = bib1;
+  set(bib1, 7, 2);
+  //Queen for PlayerA
+  Queen qa = new Queen(0, 3, 'a');
+  //cb[0][3] = qa;
+  set(qa, 0, 3);
+  //Queen for PlayerB
+  Queen qb = new Queen(7, 4, 'b');
+  //cb[7][4] = qb;
+  set(qb, 7, 4);
   //King for PlayerA
   King ka = new King(0, 4, 'a');
   //cb[0][4] = ka;

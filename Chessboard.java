@@ -459,6 +459,7 @@ if (chb[curlL][curlR].toString().equals("P")){
     change = input.next();
     boolean done = false;
     while (!(done)){
+      change = input.next();
       if (change.equals("Q")){
         chb[newlL][newlR] = new Queen(newlL, newlR, playerType);
         done = true;
